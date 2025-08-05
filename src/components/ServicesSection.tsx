@@ -1,71 +1,100 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { MapPin, Palette, Cog, Hammer, Shield, Home } from "lucide-react";
+import React from 'react';
+import {
+  FaMapMarkedAlt,
+  FaUserTie,
+  FaPhoneAlt,
+  FaClipboardCheck,
+  FaDraftingCompass,
+  FaFileContract,
+  FaTools,
+  FaHardHat,
+  FaKey,
+} from 'react-icons/fa';
+
+const services = [
+  {
+    icon: <FaMapMarkedAlt />, 
+    title: 'Find The Perfect Site',
+    desc: 'To bring your dream home to life, the first step is selecting the right piece of land. The ideal site will set the foundation for your future sanctuary.',
+  },
+  {
+    icon: <FaUserTie />,
+    title: 'Hire A Designer',
+    desc: 'A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.',
+  },
+  {
+    icon: <FaPhoneAlt />,
+    title: 'Get In Touch',
+    desc: 'You’ve made the right choice—welcome aboard! Now, relax and let us handle the rest. Your project is in capable hands. Ready to get started?',
+  },
+  {
+    icon: <FaClipboardCheck />,
+    title: 'Site Evaluation',
+    desc: 'Once you get in touch, our engineers will visit your property. They’ll assess the site to understand the best ways to position and build your design.',
+  },
+  {
+    icon: <FaDraftingCompass />,
+    title: 'Engineering Design',
+    desc: 'We’ll develop a comprehensive engineering design & procurement process tailored to your project, efficiency beyond just aesthetics.',
+  },
+  {
+    icon: <FaFileContract />,
+    title: 'Contract',
+    desc: 'We’ll agree on the total project cost, then review your project’s detailed specifications.',
+  },
+  {
+    icon: <FaTools />,
+    title: 'Permit Processing',
+    desc: 'We Handle Building Permit Applications. Once Approved, Construction On Your Plot Can Begin.',
+  },
+  {
+    icon: <FaHardHat />,
+    title: 'Construction',
+    desc: 'Once Permitted, We Begin Building Your Dream Space. We’ll Provide Regular Updates & You’re Welcome To Offer Input & See The Progress Firsthand.',
+  },
+  {
+    icon: <FaKey />,
+    title: 'Hand Over',
+    desc: 'Months of work, your project complete. Keys granted, your dream home is now yours.',
+  },
+];
 
 const ServicesSection = () => {
-  const services = [
-    {
-      icon: MapPin,
-      title: "Find the Perfect Site",
-      description: "Expert site selection and evaluation services to ensure your project starts on the right foundation.",
-    },
-    {
-      icon: Palette,
-      title: "Hire a Designer",
-      description: "Connect with our talented design professionals who bring creativity and functionality together.",
-    },
-    {
-      icon: Cog,
-      title: "Engineering Design",
-      description: "Comprehensive engineering solutions that ensure structural integrity and safety in every project.",
-    },
-    {
-      icon: Hammer,
-      title: "Construction",
-      description: "Full-service construction with skilled craftsmen dedicated to quality and timely completion.",
-    },
-    {
-      icon: Shield,
-      title: "Project Management",
-      description: "Expert project oversight ensuring your construction stays on schedule and within budget.",
-    },
-    {
-      icon: Home,
-      title: "Interior Design",
-      description: "Complete interior design services to make your space both beautiful and functional.",
-    },
-  ];
-
   return (
-    <section id="services" className="py-20 bg-construction-light">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-4">
-            Sure We Build
-            <span className="block text-construction-orange">Impressive</span>
+    <section className="px-6 md:px-20 py-16 bg-white">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+        <div>
+          <h5 className="text-blue-800 text-sm font-semibold mb-1">What We Offer</h5>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Sure We Build <span className="text-orange-500">Impressive</span>
           </h2>
-          <p className="text-construction-gray text-lg max-w-2xl mx-auto">
-            From initial planning to final completion, we offer comprehensive construction services 
-            that cover every aspect of your building project.
-          </p>
         </div>
+        <div className="text-gray-600 max-w-2xl text-sm leading-relaxed">
+          Our Company Boasts Extensive Experience Across A Diverse Range Of Projects. We've
+          Successfully Delivered Numerous <strong>Residential Projects</strong>, From Individual
+          Homes To Expansive <strong>Villas</strong> And Multi-Story <strong>Buildings</strong>,
+          Ensuring Quality Craftsmanship And Client Satisfaction. Our Expertise Also Extends To The{' '}
+          <strong>Industrial Sector</strong>, Where We've Managed Complex Builds For Various
+          Facilities, And The <strong>Commercial Sector</strong>, Bringing Innovative And Functional
+          Spaces To Life For Businesses. This Broad Experience Base Allows Us To Tackle Projects Of
+          Any Scale & Complexity With Confidence & Proficiency.
+         
+        </div>
+      </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Card key={index} className="bg-white hover:shadow-lg transition-shadow duration-300">
-              <CardHeader>
-                <div className="w-12 h-12 bg-construction-orange rounded-lg flex items-center justify-center mb-4">
-                  <service.icon className="h-6 w-6 text-white" />
-                </div>
-                <CardTitle className="text-construction-dark">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-construction-gray">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      {/* Grid Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" >
+        {services.map((item, index) => (
+          <div
+            key={index}
+            className="bg-gray-50 p-6 rounded-lg border hover:shadow transition duration-300" 
+          >
+            <div className="text-orange-500 text-2xl mb-3" >{item.icon}</div>
+            <h3 className="text-blue-900 text-lg font-semibold mb-2" style={{fontSize: '28px'}}>{item.title}</h3>
+            <p className="text-gray-600 text-sm leading-relaxed" style={{fontSize: '18px'}}>{item.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

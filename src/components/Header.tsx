@@ -1,87 +1,65 @@
-import { Button } from "@/components/ui/button";
-import { Menu, Home } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import logo from "../assets/headerlogo.png";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="relative bg-gradient-to-r from-sky-400 via-blue-500 to-blue-600 min-h-[100px] flex items-center">
-      {/* Background with clouds effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-400/30 to-transparent"></div>
-      
-      <div className="container mx-auto px-4 py-3 relative z-10">
-        <div className="bg-white rounded-xl shadow-lg px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="bg-construction-blue p-2 rounded-lg">
-                <Home className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-construction-orange">ANSAF</div>
-                <div className="text-xs text-construction-gray uppercase tracking-wide">Building Contracting</div>
-              </div>
-            </div>
+    <>
+      <div className="sticky top-0 z-50 w-full flex justify-center pt-4 backdrop-blur-sm">
+        <div className="bg-white rounded-xl w-11/12 max-w-7xl px-6 pt-4 flex flex-wrap md:flex-nowrap items-center justify-between shadow-md" style={{height: '115px', borderBottom: '9px solid #1B4583'}}>
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <img src={logo} alt="Logo" />
+           
+          </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-10">
-              <a href="#home" className="text-construction-dark font-medium hover:text-construction-orange transition-colors text-sm uppercase tracking-wide">
-                HOME
-              </a>
-              <a href="#about" className="text-construction-dark font-medium hover:text-construction-orange transition-colors text-sm uppercase tracking-wide">
-                ABOUT US
-              </a>
-              <a href="#services" className="text-construction-dark font-medium hover:text-construction-orange transition-colors text-sm uppercase tracking-wide">
-                SERVICES
-              </a>
-              <a href="#projects" className="text-construction-dark font-medium hover:text-construction-orange transition-colors text-sm uppercase tracking-wide">
-                PROJECTS
-              </a>
-              <a href="#contact" className="text-construction-dark font-medium hover:text-construction-orange transition-colors text-sm uppercase tracking-wide">
-                CONTACT
-              </a>
-            </nav>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-800">
+            <a href="/">HOME</a>
+            <a href="/about">ABOUT US</a>
+            <a href="/services">SERVICES</a>
+            <a href="/projects">PROJECTS</a>
+          </div>
 
-            <div className="hidden lg:block">
-              <Button variant="hero" className="px-6 py-3 text-sm font-bold tracking-wide">
-                LET'S BUILD
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
+          {/* Mobile Toggle */}
+          <div className="md:hidden ml-auto">
             <button
-              className="lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-gray-700 focus:outline-none"
             >
-              <Menu className="h-6 w-6 text-construction-dark" />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {menuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="lg:hidden mt-4 pt-4 border-t border-construction-light">
-              <nav className="flex flex-col space-y-4">
-                <a href="#home" className="text-construction-dark font-medium hover:text-construction-orange transition-colors">
-                  HOME
-                </a>
-                <a href="#about" className="text-construction-dark font-medium hover:text-construction-orange transition-colors">
-                  ABOUT US
-                </a>
-                <a href="#services" className="text-construction-dark font-medium hover:text-construction-orange transition-colors">
-                  SERVICES
-                </a>
-                <a href="#projects" className="text-construction-dark font-medium hover:text-construction-orange transition-colors">
-                  PROJECTS
-                </a>
-                <Button variant="hero" className="w-full mt-4">
-                  LET'S BUILD
-                </Button>
-              </nav>
-            </div>
-          )}
+          {/* Button */}
+          <div className="hidden md:block">
+            <button className="bg-orange-500 text-white text-sm font-semibold px-5 py-2 rounded-r-xl hover:bg-orange-600 transition">
+              LETS BUILD
+            </button>
+          </div>
         </div>
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-md w-11/12 mx-auto mt-2 rounded-xl p-4 text-sm font-medium text-gray-800 space-y-2" style={{fontSize:'20px'}}>
+          <a href="/" className="block">HOME</a>
+          <a href="/About" className="block">ABOUT US</a>
+          <a href="/services" className="block">SERVICES</a>
+          <a href="/projects" className="block">PROJECTS</a>
+          <button className="w-full mt-2 bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
+            LETS BUILD
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,34 +1,34 @@
-import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-construction.jpg";
+import React from "react";
+import Header from "../components/Header";
+import backgroundImage from "../assets/hero-construction1.png";
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-construction-dark/80 to-construction-blue/60"></div>
-      </div>
-      
-      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Building Dreams,<br />
-          <span className="text-construction-orange">Crafting Reality</span>
-        </h1>
-        <p className="text-xl md:text-2xl mb-8 text-white/90">
-          We turn your construction visions into stunning realities with expert craftsmanship and innovative solutions.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="hero" size="lg">
-            Get A Quote
-          </Button>
-          <Button variant="outline-white" size="lg">
-            Learn More
-          </Button>
+    <div
+      className="bg-cover bg-center min-h-screen"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <Header />
+      {/* Hero Text Box */}
+      <div className="w-full flex justify-end items-center h-[calc(100vh-100px)] px-6">
+        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+          <h1 className="text-3xl font-bold mb-4 leading-snug">
+            Building Dreams <br /> Crafting Reality
+          </h1>
+          <p className="text-sm mb-6">
+            Provides General Contracting Services For A Wide Range Of Clients To Achieve Each Project’s Goals.
+          </p>
+          <div className="flex space-x-4">
+            <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
+              Get a Quote
+            </button>
+            <button className="bg-white text-gray-800 px-5 py-2 rounded hover:bg-gray-200 text-sm font-semibold">
+              Learn more...
+            </button>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

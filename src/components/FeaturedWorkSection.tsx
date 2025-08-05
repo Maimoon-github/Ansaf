@@ -45,7 +45,7 @@ const FeaturedWorkSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-4">
-            Featured Work
+           Our Projects
           </h2>
           <p className="text-construction-gray text-lg max-w-2xl mx-auto">
             Explore our portfolio of successful projects that showcase our commitment 

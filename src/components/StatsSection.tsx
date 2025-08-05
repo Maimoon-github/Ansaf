@@ -1,5 +1,5 @@
-import { Building, Users, Award, Clock } from "lucide-react";
-
+import {Building,  Users, Award, Clock } from "lucide-react";
+// import Construct from '../assets/S-08 1.svg';
 const StatsSection = () => {
   const stats = [
     {
@@ -25,12 +25,12 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-construction-light">
+    <section className="pb-20 ">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-construction-orange rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-construction-blue rounded-full mb-4">
                 <stat.icon className="h-8 w-8 text-white" />
               </div>
               <div className="text-3xl md:text-4xl font-bold text-construction-dark mb-2">

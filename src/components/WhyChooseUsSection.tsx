@@ -1,76 +1,53 @@
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import teamImage from "@/assets/team-planning.jpg";
+import React from 'react';
+import bgImage from '../assets/fulllbaner.png'; // Change this to your actual image filename
 
-const WhyChooseUsSection = () => {
-  const advantages = [
-    "Experienced and certified professionals",
-    "Quality materials and modern equipment",
-    "Transparent pricing with no hidden costs",
-    "Timely project completion",
-    "24/7 customer support and maintenance",
-  ];
-
-  const expertise = [
-    { area: "Interior Design", percentage: 95 },
-    { area: "House Inspection", percentage: 90 },
-    { area: "Project Management", percentage: 98 },
-    { area: "Construction Quality", percentage: 96 },
+const WhyChooseUs = () => {
+  const skills = [
+    { name: 'Construction', percent: 90 },
+    { name: 'House Renovation', percent: 70 },
+    { name: 'Interior Design', percent: 80 },
+    { name: 'Electricity', percent: 85 },
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <img 
-              src={teamImage} 
-              alt="Construction team at work" 
-              className="rounded-lg shadow-lg w-full h-auto"
-            />
-          </div>
-          
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-construction-dark mb-6">
-              We Are Advanced and
-              <span className="block text-construction-orange">Right For The Way</span>
-            </h2>
-            
-            <p className="text-construction-gray text-lg mb-8">
-              Choose us for your construction needs and experience the difference that quality, 
-              expertise, and dedication can make. We're committed to delivering exceptional results 
-              that exceed your expectations.
-            </p>
+    <section
+      className="relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-center"
+      style={{ 
+        backgroundImage: `url(${bgImage})`,
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-40"></div>
 
-            <div className="space-y-3 mb-8">
-              {advantages.map((advantage, index) => (
-                <div key={index} className="flex items-center">
-                  <div className="w-2 h-2 bg-construction-orange rounded-full mr-3"></div>
-                  <span className="text-construction-gray">{advantage}</span>
-                </div>
-              ))}
+      <div className="relative z-10 max-w-4xl px-6 py-10 bg-white/50  rounded-lg shadow-lg">
+        <h4 className="text-sm font-semibold text-orange-500 mb-2">Our Professional Team</h4>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
+          We Are Advanced And <br /> Right For The Work
+        </h2>
+        <p className="text-gray-600 mb-6">
+          We have established processes and guidelines that we follow starting from the
+          pre-construction, budgeting and conceptual phase and carrying through the final project
+          documentation.
+        </p>
+
+        <div className="space-y-5">
+          {skills.map((skill, index) => (
+            <div key={index}>
+              <div className="flex justify-between mb-1">
+                <span className="text-sm font-medium text-gray-700">{skill.name}</span>
+                <span className="text-sm font-medium text-gray-700">{skill.percent}%</span>
+              </div>
+              <div className="w-full bg-gray-200 h-2 rounded-full">
+                <div
+                  className="bg-orange-500 h-2 rounded-full"
+                  style={{ width: `${skill.percent}%` }}
+                ></div>
+              </div>
             </div>
-
-            <div className="space-y-6 mb-8">
-              {expertise.map((item, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-construction-dark font-medium">{item.area}</span>
-                    <span className="text-construction-orange font-bold">{item.percentage}%</span>
-                  </div>
-                  <Progress value={item.percentage} className="h-2" />
-                </div>
-              ))}
-            </div>
-
-            <Button variant="hero" size="lg">
-              Get Started Today
-            </Button>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default WhyChooseUsSection;
+export default WhyChooseUs;

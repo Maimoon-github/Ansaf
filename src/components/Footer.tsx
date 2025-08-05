@@ -1,87 +1,85 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin } from "lucide-react";
+import React from "react";
+import { Link } from 'react-router-dom';
+
+import Logo from "../assets/footerlogo.png"; // Update path as needed
+import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-construction-dark text-white">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="text-2xl font-bold mb-4">BuildCraft</div>
-            <p className="text-white/80 mb-6">
-              Building dreams and crafting reality since 2008. We're your trusted partner 
-              for all construction needs.
-            </p>
-            <div className="flex space-x-4">
-              <Facebook className="h-6 w-6 text-white/60 hover:text-construction-orange cursor-pointer transition-colors" />
-              <Twitter className="h-6 w-6 text-white/60 hover:text-construction-orange cursor-pointer transition-colors" />
-              <Instagram className="h-6 w-6 text-white/60 hover:text-construction-orange cursor-pointer transition-colors" />
-              <Linkedin className="h-6 w-6 text-white/60 hover:text-construction-orange cursor-pointer transition-colors" />
-            </div>
-          </div>
+    <footer className="bg-[#1B4583] text-white py-10 px-6 md:px-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        {/* Quick Links */}
+       <div>
+  <h4 className="font-bold text-lg mb-2">Quick Links</h4>
+  <div className="h-1 w-10 bg-[#f6931e] mb-4"></div>
+  <ul className="space-y-2 text-sm">
+    <li><Link to="/about" className="hover:underline">About Company</Link></li>
+    <li><Link to="/services" className="hover:underline">Services</Link></li>
+    <li><Link to="/projects" className="hover:underline">Our Projects</Link></li>
+    <li><Link to="/contact" className="hover:underline">Contact Us</Link></li>
+  </ul>
+</div>
 
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Contact Info</h3>
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <MapPin className="h-5 w-5 text-construction-orange mr-3" />
-                <span className="text-white/80">123 Construction Ave, Building City, BC 12345</span>
-              </div>
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 text-construction-orange mr-3" />
-                <span className="text-white/80">+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-5 w-5 text-construction-orange mr-3" />
-                <span className="text-white/80">info@buildcraft.com</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <div className="space-y-2">
-              <a href="#home" className="block text-white/80 hover:text-construction-orange transition-colors">Home</a>
-              <a href="#about" className="block text-white/80 hover:text-construction-orange transition-colors">About Us</a>
-              <a href="#services" className="block text-white/80 hover:text-construction-orange transition-colors">Services</a>
-              <a href="#projects" className="block text-white/80 hover:text-construction-orange transition-colors">Projects</a>
-              <a href="#contact" className="block text-white/80 hover:text-construction-orange transition-colors">Contact</a>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Get In Touch</h3>
-            <form className="space-y-4">
-              <Input 
-                placeholder="Your Name" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
-              />
-              <Input 
-                type="email" 
-                placeholder="Your Email" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
-              />
-              <Textarea 
-                placeholder="Your Message" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60 min-h-[100px]"
-              />
-              <Button variant="hero" className="w-full">
-                Send Message
-              </Button>
-            </form>
-          </div>
+        {/* Our Headquarters */}
+        <div>
+          <h2 className="font-bold text-lg mb-2">Our Qeadquaters</h2>
+          <div className="w-12 h-[2px] bg-orange-400 mb-4"></div>
+          <p className="text-sm leading-relaxed">
+            Marasi Drive 51, DAMAC<br />
+            Business Tower 907 –<br />
+            Business Bay - Dubai UAE
+          </p>
+          <p className="mt-4 text-sm">
+            +971 457 76041<br />
+            +971 505 916300<br />
+            info@ansafcont.com
+          </p>
         </div>
 
-        <div className="border-t border-white/20 mt-12 pt-8 text-center">
-          <p className="text-white/60">
-            © 2024 BuildCraft Construction. All rights reserved. Built with quality and precision.
+        {/* Newsletter */}
+        <div>
+          <h2 className="font-bold text-lg mb-2">Quality is our forte</h2>
+          <div className="w-12 h-[2px] bg-orange-400 mb-4"></div>
+          <p className="text-sm mb-4">
+            Signup our newsletter to get update information, news, or insight.
           </p>
+          <input
+            type="text"
+            placeholder="Your name"
+            className="w-full p-2 mb-2 text-black rounded-sm"
+          />
+          <input
+            type="email"
+            placeholder="Your email"
+            className="w-full p-2 mb-4 text-black rounded-sm"
+          />
+          <button className="bg-orange-400 text-white px-6 py-2 text-sm font-semibold hover:bg-orange-500 transition-all">
+            SIGN UP
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row justify-between items-center text-xs">
+        <div className="flex items-center gap-4 mb-4 md:mb-0">
+          <img src={Logo} alt="Ansaf Logo" className="h-14" />
+          <div className="text-white space-x-2">
+            <Link to="/">Terms of Use</Link> |
+          <Link to="/">Privacy Policy</Link> |
+          <Link to="/">License Agreements</Link>
+          <div className="text-white text-xs">
+          Copyright © 2025 ANSAF by Nida
+        </div>
+          </div>
+        </div>
+        
+        <div className="flex gap-2 mt-4 md:mt-0">
+        <a href="#">  <FaFacebookF className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="#"> <FaTwitter className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="#"> <FaYoutube className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="#"> <FaInstagram className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="#"> <FaLinkedinIn className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+        
         </div>
       </div>
     </footer>
