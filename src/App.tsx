@@ -14,7 +14,10 @@ import About from './pages/About'
 import VillaConstruction from './pages/VillaConstruction'
 import VillaDesign from "./pages/VillaDesign";
 import InteriorDesign from './pages/InteriorDesign'
-import VillaRenovation from './pages/VillaRenovation'
+import VillaRenovation from './pages/VillaRenovation';
+import VillaMaintenance from './pages/VillaMaintenance'
+import Fitout from './pages/Fitout'
+import ContactUs from './pages/Contact'
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => (
           <Route path="/services/villa-design" element={<VillaDesign/>} />
           <Route path="/services/interior-design" element={<InteriorDesign/>} />
           <Route path="/services/villa-renovation" element={<VillaRenovation/>} />
+          <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
+          <Route path="/services/fitout" element={<Fitout/>} />
+          <Route path="/Contact-us" element={<ContactUs/>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

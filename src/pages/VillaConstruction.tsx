@@ -13,7 +13,7 @@ const villaSlides = [
   {
     id: 1,
     image: Villa1,
-    title: "Build Your Dream Villa in Dubai ",
+    title: "Build Your Dream Villa in Dubai",
     desc:
       "Imagine waking up every day in a home that reflects your taste, lifestyle, and the luxurious essence of Dubai. Choosing the right villa construction company in Dubai can make all the difference.",
   },

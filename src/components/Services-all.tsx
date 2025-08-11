@@ -43,14 +43,14 @@ const services = [
   {
     title: "Villa Maintenance",
     icon:  VillaMaintenanceIcon,
-     link: "/services/villa-construction",
+     link: "/services/villa-maintenance",
     description:
       "A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.",
   },
   {
     title: "Fitout",
     icon: VillaDesignIcon,
-     link: "/services/villa-construction",
+     link: "/services/Fitout",
     description:
       "A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.",
   },

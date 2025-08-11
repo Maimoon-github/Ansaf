@@ -26,7 +26,7 @@ const features = [
 
 const ProfessionalTeam = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white px-9">
       <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
         
         {/* === Text Section === */}

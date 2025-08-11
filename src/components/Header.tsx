@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/headerlogo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,9 +41,9 @@ const Header = () => {
 
           {/* Button */}
           <div className="hidden md:block">
-            <button className="bg-orange-500 text-white text-sm font-semibold px-5 py-2 rounded-r-xl hover:bg-orange-600 transition">
+            <Link to={"/Contact-us"}><button className="bg-orange-500 text-white text-sm font-semibold px-5 py-2 rounded-r-xl hover:bg-orange-600 transition">
               LETS BUILD
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
