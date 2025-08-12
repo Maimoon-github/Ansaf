@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import HeaderNew from "@/components/Header2";
 import VillaRenovationHero from '../assets/villa-renovation-hero.png'
 import VillaRenovationCard from "@/components/VillaRenovationslider";
 import WhyChoosVillarenovation from '@/components/WhychooseVillarenovation';
@@ -12,7 +12,7 @@ const VillaRenovation = () => {
       style={{ backgroundImage: `url(${VillaRenovationHero})` }}
     > 
 
-      <Header />
+      <HeaderNew />
 
       <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
         <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">

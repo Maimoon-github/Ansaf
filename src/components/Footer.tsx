@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+
 
 import Logo from "../assets/footerlogo.png"; // Update path as needed
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram, FaLinkedinIn } from "react-icons/fa";
@@ -15,8 +17,8 @@ const Footer = () => {
   <ul className="space-y-2 text-sm">
     <li><Link to="/about" className="hover:underline">About Company</Link></li>
     <li><Link to="/services" className="hover:underline">Services</Link></li>
-    <li><Link to="/projects" className="hover:underline">Our Projects</Link></li>
-    <li><Link to="/contact" className="hover:underline">Contact Us</Link></li>
+    <li><Link to="/#projects" className="hover:underline">Our Projects</Link></li>
+    <li><Link to="/Contact-us" className="hover:underline">Contact Us</Link></li>
   </ul>
 </div>
 
@@ -25,17 +27,17 @@ const Footer = () => {
           <h2 className="font-bold text-lg mb-2">Our Qeadquaters</h2>
           <div className="w-12 h-[2px] bg-orange-400 mb-4"></div>
           <p className="text-sm leading-relaxed">
-            Marasi Drive 51, DAMAC<br />
-            Business Tower 907 –<br />
-            Business Bay - Dubai UAE
+            DAMAC Business<br />
+            Tower Office 907 - Dubai<br />
+            
           </p>
           <p className="mt-4 text-sm">
-            +971 457 76041<br />
-            +971 505 916300<br />
-            info@ansafcont.com
+            +971 45776041<br />
+            
+            support@ansafcont.com
           </p>
         </div>
-
+ 
         {/* Newsletter */}
         <div>
           <h2 className="font-bold text-lg mb-2">Quality is our forte</h2>
@@ -68,7 +70,7 @@ const Footer = () => {
           <Link to="/">Privacy Policy</Link> |
           <Link to="/">License Agreements</Link>
           <div className="text-white text-xs">
-          Copyright © 2025 ANSAF by Nida
+          Copyright © 2025 ANSAF Building Contracting LLC
         </div>
           </div>
         </div>

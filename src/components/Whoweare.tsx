@@ -4,7 +4,8 @@ import { FaRegSmile, FaRegCheckCircle } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi";
 import { LiaBusinessTimeSolid } from "react-icons/lia";
 import StatsSection from "./StatsSection";
-
+import ScopeofService from '../assets/scope-of-service.png'
+import OurMission from '../assets/our-mission.png'
 const Whoweare = () => {
   return (
     <div className="px-6 md:px-20 py-16 space-y-16">
@@ -13,7 +14,7 @@ const Whoweare = () => {
         <div className="md:w-1/2">
           <p className="text-blue-600 font-semibold">Who Are We</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ansaf Contracting Staff</h2>
-          <p className="text-gray-700 text-sm leading-7">
+          <p className="text-gray-700 text-sm leading-7" style={{fontSize:'20px'}}>
             Our key staff, most of whom have decades of professional experience, have carefully
             selected a well balanced team by combining high level practical skill and knowledge
             acquired in the eld of management and operation. This unique combination ensures
@@ -37,20 +38,23 @@ const Whoweare = () => {
       <div className="grid md:grid-cols-2 gap-10">
         <div>
           <h3 className="text-2xl font-bold mb-4">Scope Of Services</h3>
-          <p className="text-gray-700 text-sm leading-7">
+          <p className="text-gray-700 text-sm leading-7" style={{maxWidth:'603px', fontSize:'20px'}}>
             Provides general contracting services for a wide range of clients. To achieve each
             project’s goals, we have established processes and guidelines that we follow starting
             from the pre-construction, budgeting and conceptual phase and carrying through the nal
             project documentation.
           </p>
+          <img src={ScopeofService} alt="" />
         </div>
         <div>
           <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-          <p className="text-gray-700 text-sm leading-7">
+          <p className="text-gray-700 text-sm leading-7" style={{maxWidth:'603px', fontSize:'20px'}}>
             Our mission is to render best quality services accompanied with budget control and
             timely completion of work. We strive to consider our client views and do our best to
             fulfill their requirements for the project.
           </p>
+          <img src={OurMission} alt="" />
+
         </div>
       </div>
 

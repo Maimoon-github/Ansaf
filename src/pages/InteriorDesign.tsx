@@ -1,4 +1,4 @@
-import Header from '@/components/Header';
+import HeaderNew from '@/components/Header2';
 import Interiorbgimage from '../assets/interiordesign.png'
 // import ImageSlider from "./ImageSlider";
 import ImageSlider from "../components/VillaCarousel";
@@ -37,7 +37,7 @@ const InteriosDesign = () => {
       className="bg-cover bg-center min-h-screen"
       style={{ backgroundImage: `url(${Interiorbgimage})` }}
     > 
-      <Header />
+      <HeaderNew />
 
       <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
         <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">

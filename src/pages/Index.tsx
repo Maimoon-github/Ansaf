@@ -9,16 +9,16 @@ import FeaturedWorkSection from "@/components/FeaturedWorkSection";
 import MeasureUpSection from "@/components/MeasureUpSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-import Bannertool from '@/assets/construction-tools.jpg'
+import Bannertool01 from '@/assets/banner-tool01.png'
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* <Header /> */}
+     {/* header is in herosection */}
       <HeroSection />
       <AboutSection />
       <StatsSection />
       <BannerSection
-      backgroundImage={Bannertool}
+      backgroundImage={Bannertool01}
         title="You construct a dream."
         highlight="We will construct them into reality."
         subtitle="Best quality services accompanied with budget control and timely completion of work." />

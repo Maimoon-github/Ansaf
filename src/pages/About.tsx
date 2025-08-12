@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/Header";
+import HeaderNew from "../components/Header2";
 import Aboutbgimage from '../assets/about-updated-banner.png'
 import WhoWeAre from "@/components/Whoweare";
 import  Footer from '@/components/Footer'
@@ -7,6 +7,8 @@ import BannerSection from "@/components/BannerSection";
 import AboutBanner from '@/assets/aboutbanner.png';
 import AboutProfessional from '@/components/aboutprofessional';
 import Aboutdirector from '@/components/aBout-director';
+import MeasureUpSection from "@/components/MeasureUpSection";
+
 const AboutPage = () => {
   return (
     <>
@@ -15,7 +17,7 @@ const AboutPage = () => {
       style={{ backgroundImage: `url(${Aboutbgimage})` }}
     > 
 
-      <Header />
+      <HeaderNew/>
 
       <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
         <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
@@ -36,8 +38,8 @@ const AboutPage = () => {
         highlight=""
         subtitle="best quality services accompanied with budget control and timely completion of work." 
     />
-
-    <AboutProfessional/>
+<MeasureUpSection/>
+    {/* <AboutProfessional/> */}
     <Aboutdirector/>
 
 <Footer/>

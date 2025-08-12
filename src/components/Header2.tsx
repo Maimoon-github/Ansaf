@@ -1,178 +1,240 @@
 import React, { useState } from "react";
 import logo from "../assets/headerlogo.png";
-import { url } from "inspector";
-export default function Navbar() {
-  const NavItems = [
-    {
-      title: "Home",
-      url: "/",
-      cName: "nav-links"
-    },
-    {
-      title: "About",
-      url: "/About",
-      cName: "nav-links"
-    },
-    {
-      title: "Portfolio",
-      url: "/services",
-      cName: "nav-links"
-    },
-    {
-      title: "Contact",
-      url: "#",
-      cName: "nav-links"
-    },
-    {
-      title: "Let's Connect",
-      url: "#",
-      cName: "nav-button"
-    }
-  ];
 
+export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleClick = () => setOpen(!open);
+
+  const NavItems = [
+    { title: "Home", url: "/", cName: "nav-links" },
+    { title: "About", url: "/about", cName: "nav-links" },
+    {
+      title: "Services",
+      url: "/services",
+      cName: "nav-links",
+      dropdown: [
+        { title: "View All", url: "/services" },
+        { title: "Villa Construction", url: "/services/villa-construction" },
+        { title: "Villa Design", url: "/services/villa-design" },
+        { title: "Interior Design", url: "/services/interior-design" },
+        { title: "Villa Renovation", url: "/services/villa-renovation" },
+        { title: "Villa Maintenance", url: "/services/villa-maintenance" },
+        { title: "Fitout", url: "/services/fitout" },
+      ],
+    },
+    { title: "Contact", url: "/Contact-us", cName: "nav-links" },
+  ];
 
   return (
     <>
       <style>{`
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
-        .App {
-          margin: 0;
-          padding: 0;
-          font-family: "Poppins", sans-serif;
-          text-align: center;
-          background: linear-gradient(
-            0deg,
-            rgba(34, 193, 195, 1) 0%,
-            rgba(253, 187, 45, 1) 100%
-          );
-        }
+
         .NavbarItems {
-        border-bottom: 9px solid #1B4583;
           display: flex;
+          align-items: center;
           justify-content: space-between;
-          background-color: white;
-          align-items: center;
-          font-size: 1.2rem;
-          border-radius: 9px;
-          padding: 0px 20px;
-          height: 115px;
-          width: 90%;
-          position: fixed;
-          top: 10px;
+          background: white;
+          padding: 0 20px;
+          height: 115px; /* reduced height */
+          position: absolute;
+          top: 10px; /* gap from top */
           left: 50%;
-          transform: translate(-50%);
+          transform: translateX(-50%);
+          border-bottom: 4px solid #1B4583;
+          font-family: "Poppins", sans-serif;
+          z-index: 1000;
+          width: 90%;
+          max-width: 1200px;
+          border-radius: 8px; /* optional rounded corners */
         }
-        
-        
-       
-        .MenuItems {
-          list-style: none;
+
+        .logo img {
+        padding-top: 15px
+          
+        }
+
+        .menu {
           display: flex;
           align-items: center;
-          white-space: nowrap;
+          gap: 20px;
         }
+
         .nav-links {
           text-decoration: none;
           color: black;
-          padding: 10px 12px;
+          padding: 8px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
         }
-        .nav-links i {
-          padding-right: 10px;
-        }
+
         .nav-links:hover {
-          background-color: turquoise;
-          color: black;
+          background: #F89F22;
           border-radius: 5px;
-          transition: all 0.2s ease-in-out;
         }
-        .fa-bars,
-        .fa-times {
-          color: green;
-          cursor: pointer;
-        }
-        .Hamburger-Cross-Icons {
-          display: none;
-        }
+
         .nav-button {
-          padding: 12px;
-          background-color: #F89F22;
+          padding: 8px 14px;
+          background: #F89F22;
           border-radius: 5px;
           color: white;
-          text-decoration: none;
-          font-size: 1.2rem;
           font-weight: bold;
+          text-decoration: none;
         }
-        @media screen and (max-width: 850px) {
-          .NavbarItems {
-            z-index: 99;
+
+        /* Dropdown */
+        .dropdown {
+          position: relative;
+        }
+        .dropdown-content {
+        width: 10rem;
+          display: none;
+          position: absolute;
+          left: 0;
+          background: white;
+          box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+          border-radius: 5px;
+        }
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        .dropdown-content a {
+          display: block;
+          padding: 8px;
+          text-decoration: none;
+          color: black;
+        }
+        .dropdown-content a:hover {
+          background: #F89F22;
+        }
+
+        /* Mobile */
+        .hamburger {
+          display: none;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+@media (max-width: 850px) {
+  .NavbarItems {
+    width: 95%;
+    max-width: 700px;
+  }
+  .menu {
+    position: fixed;
+    top: 7.2rem; /* below navbar */
+    left: -100%; /* completely off screen */
+    right: 0;
+    flex-direction: column;
+    width: 100%;
+    background: white;
+    padding-top: 1.5rem;
+    margin: 0; /* remove default margin */
+    padding-left: 0; /* remove left padding */
+    list-style: none; /* prevent bullet spacing */
+    transition: left 0.3s ease;
+    z-index: 999;
+    transform: translateX(-100%); /* fully hide */
+            padding-top: 1.5rem; /* reduced padding */
+  }
+  .menu.active {
+    left: 0; /* slide in */
+     transform: translateX(0);
+  }
+  .hamburger {
+    display: block;
+  }
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+  }
+  .nav-button {
+    margin-top: auto;
+    margin-bottom: 2rem;
+    width: 80%;
+    text-align: center;
+  }
+}
+
+        @media (max-width: 850px) {
+         
+      
+          .menu.active {
+           
           }
-          .MenuItems {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            background-color: white;
-            width: 100%;
-            border-radius: 15px;
-            height: auto;
-            backdrop-filter: blur(5px);
-            position: absolute;
-            align-items: stretch;
-            top: 0;
-            left: -110%;
-            padding: 10rem 4rem 40px 6rem;
-            margin: 0;
-            z-index: -1;
-            transition: all 0.3s ease-in-out;
-          }
-          .MenuItems.active {
-            left: 0%;
-          }
-          .nav-links {
-            display: block;
-            width: 100%;
-            padding: 1.5rem 0;
-          }
-          .Hamburger-Cross-Icons {
-            display: block;
-          }
-          .nav-button {
-            padding: 1rem;
-            display: block;
-            text-align: center;
-            width: 80%;
-            margin: auto;
-          }
+          
         }
       `}</style>
 
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      />
+
       <nav className="NavbarItems">
-        <h3 className="logo" style={{paddingTop: '1rem'}}>
-          <img src={logo} alt="" />
-          {/* <i className="fab fa-react"></i>Rayz */}
-        </h3>
-        <div className="Hamburger-Cross-Icons" onClick={handleClick}>
+        {/* Logo */}
+        <div className="logo">
+          <img src={logo} alt="Logo" />
+        </div>
+
+        {/* Hamburger Icon */}
+        <div className="hamburger" onClick={handleClick}>
           <i className={open ? "fas fa-times" : "fas fa-bars"}></i>
         </div>
-        <ul className={open ? "MenuItems active" : "MenuItems"}>
-          {NavItems.map((Item, index) => {
+
+        {/* Menu Links */}
+        <ul className={`menu ${open ? "active" : ""}`}>
+          {NavItems.map((item, index) => {
+            if (item.dropdown) {
+              return (
+                <li key={index} className="dropdown">
+                  <a
+                    href={item.url}
+                    className={item.cName}
+                    onClick={(e) => {
+                      if (window.innerWidth <= 850) {
+                        e.preventDefault();
+                        setDropdownOpen(!dropdownOpen);
+                      }
+                    }}
+                  >
+                    {item.title} <i className="fas fa-chevron-down"></i>
+                  </a>
+                  <div
+                    className="dropdown-content"
+                    style={{
+                      display:
+                        window.innerWidth <= 850
+                          ? dropdownOpen
+                            ? "block"
+                            : "none"
+                          : undefined,
+                    }}
+                  >
+                    {item.dropdown.map((drop, i) => (
+                      <a key={i} href={drop.url}>
+                        {drop.title}
+                      </a>
+                    ))}
+                  </div>
+                </li>
+              );
+            }
             return (
               <li key={index}>
-                <a href={Item.url} className={Item.cName}>
-                  
-                  {Item.title}
+                <a href={item.url} className={item.cName}>
+                  {item.title}
                 </a>
               </li>
             );
           })}
+          <a href="/Contact-us" className="nav-button">
+            Let's Connect
+          </a>
         </ul>
       </nav>
     </>
   );
 }
-
-
-

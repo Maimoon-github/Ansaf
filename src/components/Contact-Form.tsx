@@ -39,7 +39,7 @@ const Contact = () => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                     DAMAC Business Tower Office 907 - Dubai
                     </p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const Contact = () => {
                       Phone Number
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      (+97)457 76041
+                      (+971)45776041
 
                     </p>
                   </div>
@@ -105,7 +105,7 @@ const Contact = () => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      info@ansafcont.com
+                     support@ansafcont.com
                     </p>
                   </div>
                 </div>

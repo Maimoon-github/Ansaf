@@ -1,6 +1,7 @@
 import React from "react";
-import Header from "../components/Header";
+import HeaderNew from "../components/Header2";
 import backgroundImage from "../assets/hero-construction1.png";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -8,7 +9,7 @@ const HeroSection = () => {
       className="bg-cover bg-center min-h-screen"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <Header />
+      <HeaderNew />
       {/* Hero Text Box */}
       <div className="w-full flex justify-end items-center h-[calc(100vh-100px)] px-6">
         <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
@@ -19,12 +20,12 @@ const HeroSection = () => {
             Provides General Contracting Services For A Wide Range Of Clients To Achieve Each Project’s Goals.
           </p>
           <div className="flex space-x-4">
-            <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
+           <Link to={"/Contact-us"}> <button className="bg-orange-500 text-white px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
               Get a Quote
-            </button>
-            <button className="bg-white text-gray-800 px-5 py-2 rounded hover:bg-gray-200 text-sm font-semibold">
+            </button></Link>
+           <Link to={'/services'}> <button className="bg-white text-gray-800 px-5 py-2 rounded hover:bg-gray-200 text-sm font-semibold">
               Learn more...
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>
