@@ -20,7 +20,7 @@ const Header = () => {
             <a href="/">HOME</a>
             <a href="/about">ABOUT US</a>
             <a href="/services">SERVICES</a>
-            <a href="/projects">PROJECTS</a>
+            <a href="/">PROJECTS</a>
           </div>
 
           {/* Mobile Toggle */}
@@ -54,7 +54,7 @@ const Header = () => {
           <a href="/" className="block">HOME</a>
           <a href="/About" className="block">ABOUT US</a>
           <a href="/services" className="block">SERVICES</a>
-          <a href="/projects" className="block">PROJECTS</a>
+          <a href="/" className="block">PROJECTS</a>
           <button className="w-full mt-2 bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
             LETS BUILD
           </button>
