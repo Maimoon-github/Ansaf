@@ -39,10 +39,11 @@ const Whoweare = () => {
         <div>
           <h3 className="text-2xl font-bold mb-4">Scope Of Services</h3>
           <p className="text-gray-700 text-sm leading-7" style={{maxWidth:'603px', fontSize:'20px'}}>
-            Provides general contracting services for a wide range of clients. To achieve each
-            project’s goals, we have established processes and guidelines that we follow starting
-            from the pre-construction, budgeting and conceptual phase and carrying through the nal
-            project documentation.
+            As a main contractor, we provide end-to-end construction solutions, ensuring quality,
+safety, and efficiency from project inception to completion. Our services include, but
+are not limited to, the following: Project Planning & Management, Pre-Construction
+Services, Construction Works, Subcontractor Coordination, Health, Safety &
+Environmental Compliance, Quality Assurance & Control, Handover & PostConstruction Support.
           </p>
           <img src={ScopeofService} alt="" />
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/headerlogo.png";
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -176,7 +177,7 @@ export default function Navbar() {
       <nav className="NavbarItems">
         {/* Logo */}
         <div className="logo">
-          <img src={logo} alt="Logo" />
+         <Link to='/'> <img src={logo} alt="Logo" /> </Link>
         </div>
 
         {/* Hamburger Icon */}
@@ -230,7 +231,7 @@ export default function Navbar() {
               </li>
             );
           })}
-          <a href="/Contact-us" className="nav-button">
+          <a href="https://calendly.com/ansafcont/30min?month=2025-08" className="nav-button">
             Let's Connect
           </a>
         </ul>

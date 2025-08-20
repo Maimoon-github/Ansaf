@@ -4,7 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 
 
 import Logo from "../assets/footerlogo.png"; // Update path as needed
-import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaTiktok, FaPinterest, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -17,14 +17,13 @@ const Footer = () => {
   <ul className="space-y-2 text-sm">
     <li><Link to="/about" className="hover:underline">About Company</Link></li>
     <li><Link to="/services" className="hover:underline">Services</Link></li>
-    <li><Link to="/#projects" className="hover:underline">Our Projects</Link></li>
     <li><Link to="/Contact-us" className="hover:underline">Contact Us</Link></li>
   </ul>
 </div>
 
         {/* Our Headquarters */}
         <div>
-          <h2 className="font-bold text-lg mb-2">Our Qeadquaters</h2>
+          <h2 className="font-bold text-lg mb-2">Our Headquarters</h2>
           <div className="w-12 h-[2px] bg-orange-400 mb-4"></div>
           <p className="text-sm leading-relaxed">
             DAMAC Business<br />
@@ -64,7 +63,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/20 pt-6 flex flex-col md:flex-row justify-between items-center text-xs">
         <div className="flex items-center gap-4 mb-4 md:mb-0">
-          <img src={Logo} alt="Ansaf Logo" className="h-14" />
+        <Link to='/'>  <img src={Logo} alt="Ansaf Logo" className="h-14" /></Link>
           <div className="text-white space-x-2">
             <Link to="/">Terms of Use</Link> |
           <Link to="/">Privacy Policy</Link> |
@@ -76,11 +75,11 @@ const Footer = () => {
         </div>
         
         <div className="flex gap-2 mt-4 md:mt-0">
-        <a href="#">  <FaFacebookF className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="#"> <FaTwitter className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="#"> <FaYoutube className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="#"> <FaInstagram className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="#"> <FaLinkedinIn className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+        <a href="https://www.facebook.com/Ansaf.contracting.Building">  <FaFacebookF className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="https://www.tiktok.com/@ansafbuildingcont"> <FaTiktok className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="https://www.pinterest.com/ansafbuilding/"> <FaPinterest className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         <a href="https://www.instagram.com/ansaf_building_contracting/"> <FaInstagram className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+         {/* <a href="#"> <FaLinkedinIn className="text-white border border-white p-1 rounded w-6 h-6" /></a> */}
         
         </div>
       </div>

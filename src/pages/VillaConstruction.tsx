@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import WhyChooseUs from '@/components/WhychooseVilla';
 import villaLeftImg from "@/assets/villaconstructionleft.png";
 import villaRightImg from "@/assets/villaconstructionright.png";
-
+import { Link } from 'react-router-dom';
 
 import ImageSlider  from "../components/VillaCarousel";
 import Villa1 from "../assets/viilaCaarousal1.png";
@@ -47,9 +47,9 @@ const VillaConstruction = () => {
           <p className="text-sm mb-6">
            Embarking on the journey to build your dream villa in Dubai, UAE, starts with choosing the right construction partner. Look no further – Ansaf Cont. is widely recognized as one of the top villa construction contractors in the region.
           </p>
-           <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
+          <Link to={'https://calendly.com/ansafcont/30min?month=2025-08'}> <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
               BOOK AN APPOINMENT
-            </button>
+            </button></Link>
         </div>
       </div>
     </div>

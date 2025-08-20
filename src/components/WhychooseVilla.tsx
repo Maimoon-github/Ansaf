@@ -54,8 +54,8 @@ export default function WhyChooseUs() {
           <div className="flex justify-between items-start mb-4">
             <img src={TurnkeyIcon} alt="Turnkey Construction" className="" width={'84px'} height={'84px'} />
             <a
-              href="/services/turnkey-construction"
-              className="bg-orange-500 text-white px-4 py-1 text-sm rounded flex items-center gap-1 hover:bg-orange-600"
+              href="/services"
+              className=" text-white px-4 py-1 text-sm rounded flex items-center gap-1 hover:bg-orange-600" style={{backgroundColor:'#F89F22'}}
             >
               View details →
             </a>
@@ -72,8 +72,8 @@ export default function WhyChooseUs() {
           <div className="flex justify-between items-start mb-4">
             <img src={FitoutIcon} alt="Fitouts" className="" width={'84px'} height={'84px'} />
             <a
-              href="/services/renovation-fitouts"
-              className="bg-orange-500 text-white px-4 py-1 text-sm rounded flex items-center gap-1 hover:bg-orange-600"
+              href="/services/fitout"
+              className=" text-white px-4 py-1 text-sm rounded flex items-center gap-1 hover:bg-orange-600" style={{backgroundColor:'#F89F22'}}
             >
               View details →
             </a>

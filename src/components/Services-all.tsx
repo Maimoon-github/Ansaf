@@ -17,7 +17,7 @@ const services = [
     icon: VillaConstructionIcon,
      link: "/services/villa-construction",
     description:
-      "A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.",
+      "We deliver bespoke villa construction, combining quality craftsmanship with modern design to create elegant, durable, and functional homes.",
   },
   {
     title: "Villa Design",
@@ -38,14 +38,14 @@ const services = [
     icon:   FitoutIcon,
      link: "/services/villa-renovation",
     description:
-      "A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.",
+      "Our renovation services transform existing villas, enhancing aesthetics, comfort, andvalue while preserving structural integrity.",
   },
   {
     title: "Villa Maintenance",
     icon:  VillaMaintenanceIcon,
      link: "/services/villa-maintenance",
     description:
-      "A Designer brings your vision to life. Find a pro, share specifics: floor area, rooms, bathrooms, kitchen size, garage space, maid’s room, or special needs.",
+      "We provide reliable villa maintenance services, ensuring your property remains in excellent condition through regular care and prompt repairs.",
   },
   {
     title: "Fitout",
@@ -68,7 +68,9 @@ export default function ServicesSection() {
           <div className="absolute top-5 left-5 bg-white p-4 rounded-md shadow-lg max-w-[200px]">
             <h4 className="text-lg font-semibold mb-1">General Contracting</h4>
             <p className="text-sm text-gray-600">
-              Sodales Consectetuer Massa Interdum Parturient Tempus Convallis Nisi Purus.
+             We provide complete construction solutions, managing every stage from planning to
+project handover. With skilled teams and strict quality control, we ensure projects are
+delivered on time, within budget, and to the highest standards.
             </p>
           </div>
         </div>
@@ -114,7 +116,7 @@ export default function ServicesSection() {
               <img src={service.icon} alt={service.title} className="w-10 h-10" />
               <Link
                 to={service.link}
-                className="text-sm text-gray-600 flex items-center gap-1 hover:text-blue-700 transition"
+                className="text-sm text-gray-600 flex items-center gap-1 hover:text-blue-700 transition" style={{padding: '0.5rem', background: '#1B458324'}}
               >
                 View details <FaArrowUpRightFromSquare />
               </Link>

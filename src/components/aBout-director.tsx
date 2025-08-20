@@ -31,10 +31,15 @@ const BoardOfDirectors = () => {
         {/* === Left Text Column === */}
         <div className="flex-1">
           <h4 className="text-blue-700 font-semibold mb-2">Leadership</h4>
+          <p>Our success is driven by visionary leadership that guides every project with integrity,
+expertise, and a commitment to excellence.
+</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Board Of Director</h2>
           <div className="h-1 w-16 bg-orange-400 mb-4" />
           <p className="text-gray-600">
-            We follow starting from the pre-construction, budgeting and conceptual phase and carrying through the final project documentation
+            Our Board of Directors brings together decades of experience in construction,
+engineering, and business management. Their strategic vision ensures that every
+project is handled with precision and professionalism
           </p>
         </div>
 

@@ -24,9 +24,9 @@ const fadeIn = (direction = "up", delay = 0) => {
 
 const MeasureUpSection = () => {
   const features = [
-    { icon: SpeedIcon, title: "Speed Builder", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
-    { icon: HandOver, title: "Professional", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." },
-    { icon: Contract, title: "24/7 Support", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis." }
+    { icon: SpeedIcon, title: "Speed Builder", text: "We pride ourselves on timely project delivery without compromising quality. Our efficient planning, skilled workforce, and modern construction techniques ensure your project is completed quickly and to the highest standards." },
+    { icon: HandOver, title: "Professional", text: "Professionalism is at the core of everything we do. From transparent communication to ethical business practices, we maintain the highes industry standards to buildtrust and long-term partnerships with our clients." },
+    { icon: Contract, title: "24/7 Support", text: "Our commitment to you doesn’t stop when the workday ends. We offer round-theclock support to address your needs, answer your questions, and ensure a smooth, stress-free construction experience at every stage." }
   ];
 
   return (
