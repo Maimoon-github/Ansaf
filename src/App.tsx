@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {useRoutes ,  useLocation } from 'react-router-dom';
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { WebSocketProvider } from "@/components/WebSocketProvider";
 
 // import pages
 import Services from './pages/Services'
@@ -23,42 +24,42 @@ const queryClient = new QueryClient();
 
  const ScrollToTop = () => {
     const { pathname } = useLocation();
-  
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
-  
+
     return null;
   };
 
 const App = () => (
 
 
-  
+
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-     <ScrollToTop />
+    <WebSocketProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+       <ScrollToTop />
 
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/services/villa-construction" element={<VillaConstruction/>} />
-          <Route path="/services/villa-design" element={<VillaDesign/>} />
-          <Route path="/services/interior-design" element={<InteriorDesign/>} />
-          <Route path="/services/villa-renovation" element={<VillaRenovation/>} />
-          <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
-          <Route path="/services/fitout" element={<Fitout/>} />
-          <Route path="/Contact-us" element={<ContactUs/>} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/services/villa-construction" element={<VillaConstruction/>} />
+            <Route path="/services/villa-design" element={<VillaDesign/>} />
+            <Route path="/services/interior-design" element={<InteriorDesign/>} />
+            <Route path="/services/villa-renovation" element={<VillaRenovation/>} />
+            <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
+            <Route path="/services/fitout" element={<Fitout/>} />
+            <Route path="/Contact-us" element={<ContactUs/>} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </WebSocketProvider>
   </QueryClientProvider>
-);
-
-export default App;
+);export default App;

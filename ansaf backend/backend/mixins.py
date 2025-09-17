@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from django.http import HttpResponseNotModified
 from django.utils.http import http_date
+# Removed channels imports from top level to avoid import errors
 
 
 class OptimisticLockMixin:
@@ -111,3 +112,75 @@ class ETagLastModifiedMixin:
             response['Last-Modified'] = http_date(latest_update.timestamp())
 
         return response
+
+
+class RealtimeMixin:
+    """
+    Mixin to send real-time notifications via WebSockets on model changes.
+    """
+
+    def _send_realtime_notification(self, instance, action):
+        """Send WebSocket notification for model changes"""
+        try:
+            # Import channels modules here to avoid import errors during development
+            from channels.layers import get_channel_layer
+            from asgiref.sync import async_to_sync
+
+            channel_layer = get_channel_layer()
+            group_name = self.get_realtime_group_name()
+            event_type = self.get_realtime_event_type(action)
+
+            # Send notification asynchronously
+            async_to_sync(channel_layer.group_send)(
+                group_name,
+                {
+                    "type": event_type,
+                    "data": {
+                        "type": f"{self.get_resource_name()}.{action}",
+                        "resource": self.get_resource_name(),
+                        "id": getattr(instance, 'id', getattr(instance, 'slug', None)),
+                        "payload": self.get_notification_payload(instance, action),
+                    }
+                }
+            )
+        except ImportError as e:
+            # Channels not installed or configured
+            print(f"Channels not available: {e}")
+        except Exception as e:
+            # Log error but don't fail the request
+            print(f"Failed to send realtime notification: {e}")
+
+    def get_realtime_group_name(self):
+        """Override in subclass to specify WebSocket group name"""
+        return self.get_resource_name()
+
+    def get_resource_name(self):
+        """Override in subclass to specify resource name"""
+        return "unknown"
+
+    def get_realtime_event_type(self, action):
+        """Override in subclass to specify event type"""
+        return f"{self.get_resource_name()}_update"
+
+    def get_notification_payload(self, instance, action):
+        """Override in subclass to customize notification payload"""
+        return {
+            "id": instance.id,
+            "title": getattr(instance, 'title', ''),
+            "updated_at": instance.updated_at.isoformat(),
+            "version": getattr(instance, 'version', 1),
+        }
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        super().perform_create(serializer)
+        self._send_realtime_notification(instance, "created")
+
+    def perform_update(self, serializer):
+        instance = serializer.save()
+        super().perform_update(serializer)
+        self._send_realtime_notification(instance, "updated")
+
+    def perform_destroy(self, instance):
+        self._send_realtime_notification(instance, "deleted")
+        super().perform_destroy(instance)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_filters",
     "taggit",
     "drf_spectacular",  # OpenAPI schema generation
+    "channels",  # WebSockets support
     # Local apps
     "blogs",
     "pages",
@@ -76,6 +77,19 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "backend.wsgi.application"
+
+# ASGI application for Channels
+ASGI_APPLICATION = "backend.asgi.application"
+
+# Channel layers for WebSockets
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],  # Redis server
+        },
+    },
+}
 
 
 # Database

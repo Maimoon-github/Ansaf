@@ -1,16 +1,36 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '../lib/api';
-import type {
-  User,
-  AuthResponse,
-  BlogPost,
-  Page,
-  CreateBlogRequest,
-  UpdateBlogRequest,
-  CreatePageRequest,
-  UpdatePageRequest,
-  PaginatedResponse,
-} from '../lib/types';
+import type { Post, PageDetail, User, AuthResponse } from '../lib/api';
+import type { components } from '../lib/api-types';
+
+// Type aliases
+type PaginatedResponse<T> = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
+};
+
+type CreateBlogRequest = {
+  title: string;
+  content: string;
+  excerpt?: string;
+  status?: 'draft' | 'published';
+  category_ids?: number[];
+  tags?: string[];
+};
+
+type UpdateBlogRequest = Partial<CreateBlogRequest> & { version?: number };
+
+type CreatePageRequest = {
+  title: string;
+  content?: string;
+  status?: 'draft' | 'published';
+  meta_title?: string;
+  meta_description?: string;
+};
+
+type UpdatePageRequest = Partial<CreatePageRequest> & { version?: number };
 
 // Query keys
 export const queryKeys = {
@@ -71,7 +91,7 @@ export const useLogout = () => {
 
 // Blog hooks
 export const useBlogs = (params?: any) => {
-  return useQuery<PaginatedResponse<BlogPost>>({
+  return useQuery<PaginatedResponse<Post>>({
     queryKey: queryKeys.blogs.list(params),
     queryFn: async () => {
       const response = await api.blogs.list(params);
@@ -82,7 +102,7 @@ export const useBlogs = (params?: any) => {
 };
 
 export const useBlog = (id: number) => {
-  return useQuery<BlogPost>({
+  return useQuery<Post>({
     queryKey: queryKeys.blogs.detail(id),
     queryFn: async () => {
       const response = await api.blogs.retrieve(id);
@@ -96,7 +116,7 @@ export const useBlog = (id: number) => {
 export const useCreateBlog = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<BlogPost, Error, CreateBlogRequest>({
+  return useMutation<Post, Error, CreateBlogRequest>({
     mutationFn: async (data) => {
       const response = await api.blogs.create(data);
       return response.data;
@@ -111,7 +131,7 @@ export const useCreateBlog = () => {
 export const useUpdateBlog = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<BlogPost, Error, { id: number; data: UpdateBlogRequest; version?: number }>({
+  return useMutation<Post, Error, { id: number; data: UpdateBlogRequest; version?: number }>({
     mutationFn: async ({ id, data, version }) => {
       const response = await api.blogs.update(id, data, version);
       return response.data;

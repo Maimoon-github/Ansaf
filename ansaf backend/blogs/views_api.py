@@ -1,13 +1,35 @@
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db.models import F
-from backend.mixins import OptimisticLockMixin, ETagLastModifiedMixin
+from backend.mixins import OptimisticLockMixin, ETagLastModifiedMixin, RealtimeMixin
 from .models import Post, Category, Comment
 from .serializers import PostSerializer, CategorySerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
 
 
-class PostViewSet(OptimisticLockMixin, ETagLastModifiedMixin, viewsets.ModelViewSet):
+class PostViewSet(OptimisticLockMixin, ETagLastModifiedMixin, RealtimeMixin, viewsets.ModelViewSet):
+    queryset = Post.objects.all().select_related("author").prefetch_related("categories", "tags")
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
+    filterset_fields = ["author", "status", "categories__slug", "categories__id"]
+    search_fields = ["title", "content", "excerpt"]
+    ordering = ["-published_at"]
+
+    def get_resource_name(self):
+        return "blogs"
+
+    def retrieve(self, request, *args, **kwargs):
+        response = super().retrieve(request, *args, **kwargs)
+        # Increment view count atomically
+        Post.objects.filter(pk=self.get_object().pk).update(views_count=F("views_count") + 1)
+        return response
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if not self.request.user.is_staff:
+            # Limit to published or own drafts
+            qs = qs.filter(status=Post.STATUS_PUBLISHED)
+        return qs
     queryset = Post.objects.all().select_related("author").prefetch_related("categories", "tags")
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
