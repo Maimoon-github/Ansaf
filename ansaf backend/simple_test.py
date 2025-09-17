@@ -4,6 +4,7 @@ Simple API test script
 """
 import os
 import sys
+from pathlib import Path
 import django
 
 # Setup Django

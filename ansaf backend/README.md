@@ -19,6 +19,35 @@ Full-featured Django blog and page management system with REST API, optimistic l
 - Redis (for WebSocket channel layer)
 - Node.js 18+ (for frontend)
 
+### Development Scripts
+
+This project includes several convenience scripts to simplify development:
+
+#### Windows Batch Scripts
+- `run_in_ansaf.bat <command>` - Run any command in the activated conda environment
+- `django_cmd.bat <command>` - Run Django management commands (automatically activates environment)
+
+#### PowerShell Scripts
+- `run_in_ansaf.ps1 -Command "<command>"` - Run commands in activated conda environment
+- `run_tests.ps1 [app_name] [test_name]` - Run Django tests with options
+- `test_api.ps1` - Test API endpoints using PowerShell
+
+#### Examples
+```batch
+# Run Django management commands
+django_cmd.bat makemigrations
+django_cmd.bat migrate
+django_cmd.bat createsuperuser
+
+# Run tests
+run_tests.ps1 blogs
+run_tests.ps1 -Verbose
+
+# Run custom commands
+run_in_ansaf.bat python manage.py shell
+run_in_ansaf.bat python test_websockets.py
+```
+
 ### Installation
 ```powershell
 # Create and activate conda environment

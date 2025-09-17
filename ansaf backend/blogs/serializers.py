@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from taggit.serializers import (TagListSerializerField, TaggitSerializer)
+from drf_spectacular.utils import extend_schema_field
 from .models import Post, Category, Comment
 from typing import Any, Dict, List
 
@@ -30,6 +31,7 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ("is_approved", "created_at", "updated_at")
 
+    @extend_schema_field(serializers.ListSerializer(child=serializers.DictField()))
     def get_replies(self, obj: Comment) -> List[Dict[str, Any]]:
         # Only include approved replies
         qs = obj.replies.filter(is_approved=True)
