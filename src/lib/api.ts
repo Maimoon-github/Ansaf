@@ -96,7 +96,12 @@ export const api = {
 
   // Blogs
   blogs: {
-    list: (params?: any) => apiClient.get('/posts/', { params }),
+    list: (params?: any) => {
+      console.log('API blogs.list called with params:', params);
+      const result = apiClient.get('/posts/', { params });
+      console.log('API blogs.list result:', result);
+      return result;
+    },
     create: (data: any) => apiClient.post('/posts/', data),
     retrieve: (slug: string) => apiClient.get(`/posts/${slug}/`),
     update: (slug: string, data: any, version?: number) => {

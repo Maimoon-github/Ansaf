@@ -6,7 +6,10 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 const Blog = () => {
-  const { data: blogsResponse, isLoading, error } = useBlogs({ status: 'published' });
+  console.log('Blog component rendering...');
+  const { data: blogsResponse, isLoading, error, isError } = useBlogs({ status: 'published' });
+
+  console.log('Blog data:', { blogsResponse, isLoading, error, isError });
 
   if (isLoading) {
     return (

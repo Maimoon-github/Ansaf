@@ -92,10 +92,13 @@ export const useLogout = () => {
 
 // Blog hooks
 export const useBlogs = (params?: any) => {
+  console.log('useBlogs called with params:', params);
   return useQuery<PaginatedResponse<Post>>({
     queryKey: queryKeys.blogs.list(params),
     queryFn: async () => {
+      console.log('Fetching blogs from API...');
       const response = await api.blogs.list(params);
+      console.log('API response:', response);
       return response.data;
     },
     staleTime: 2 * 60 * 1000, // 2 minutes
