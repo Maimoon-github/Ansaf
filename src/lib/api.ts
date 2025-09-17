@@ -88,54 +88,54 @@ export const api = {
   // Authentication
   auth: {
     login: (credentials: { username: string; password: string }) =>
-      apiClient.post('/v1/auth/login/', credentials),
-    logout: () => apiClient.post('/v1/auth/logout/'),
-    me: () => apiClient.get('/v1/auth/me/'),
-    csrfToken: () => apiClient.get('/v1/auth/csrf_token/'),
+      apiClient.post('/auth/login/', credentials),
+    logout: () => apiClient.post('/auth/logout/'),
+    me: () => apiClient.get('/auth/me/'),
+    csrfToken: () => apiClient.get('/auth/csrf_token/'),
   },
 
   // Blogs
   blogs: {
-    list: (params?: any) => apiClient.get('/v1/posts/', { params }),
-    create: (data: any) => apiClient.post('/v1/posts/', data),
-    retrieve: (id: number) => apiClient.get(`/v1/posts/${id}/`),
-    update: (id: number, data: any, version?: number) => {
-      const headers: any = {};
-      if (version) {
-        headers['If-Match'] = version.toString();
-      }
-      return apiClient.put(`/v1/posts/${id}/`, data, { headers });
-    },
-    partialUpdate: (id: number, data: any, version?: number) => {
-      const headers: any = {};
-      if (version) {
-        headers['If-Match'] = version.toString();
-      }
-      return apiClient.patch(`/v1/posts/${id}/`, data, { headers });
-    },
-    delete: (id: number) => apiClient.delete(`/v1/posts/${id}/`),
-  },
-
-  // Pages
-  pages: {
-    list: (params?: any) => apiClient.get('/v1/pages/', { params }),
-    create: (data: any) => apiClient.post('/v1/pages/', data),
-    retrieve: (slug: string) => apiClient.get(`/v1/pages/${slug}/`),
+    list: (params?: any) => apiClient.get('/posts/', { params }),
+    create: (data: any) => apiClient.post('/posts/', data),
+    retrieve: (slug: string) => apiClient.get(`/posts/${slug}/`),
     update: (slug: string, data: any, version?: number) => {
       const headers: any = {};
       if (version) {
         headers['If-Match'] = version.toString();
       }
-      return apiClient.put(`/v1/pages/${slug}/`, data, { headers });
+      return apiClient.put(`/posts/${slug}/`, data, { headers });
     },
     partialUpdate: (slug: string, data: any, version?: number) => {
       const headers: any = {};
       if (version) {
         headers['If-Match'] = version.toString();
       }
-      return apiClient.patch(`/v1/pages/${slug}/`, data, { headers });
+      return apiClient.patch(`/posts/${slug}/`, data, { headers });
     },
-    delete: (slug: string) => apiClient.delete(`/v1/pages/${slug}/`),
+    delete: (slug: string) => apiClient.delete(`/posts/${slug}/`),
+  },
+
+  // Pages
+  pages: {
+    list: (params?: any) => apiClient.get('/pages/', { params }),
+    create: (data: any) => apiClient.post('/pages/', data),
+    retrieve: (slug: string) => apiClient.get(`/pages/${slug}/`),
+    update: (slug: string, data: any, version?: number) => {
+      const headers: any = {};
+      if (version) {
+        headers['If-Match'] = version.toString();
+      }
+      return apiClient.put(`/pages/${slug}/`, data, { headers });
+    },
+    partialUpdate: (slug: string, data: any, version?: number) => {
+      const headers: any = {};
+      if (version) {
+        headers['If-Match'] = version.toString();
+      }
+      return apiClient.patch(`/pages/${slug}/`, data, { headers });
+    },
+    delete: (slug: string) => apiClient.delete(`/pages/${slug}/`),
   },
 };
 

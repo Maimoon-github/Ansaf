@@ -14,6 +14,7 @@ class PostViewSet(OptimisticLockMixin, ETagLastModifiedMixin, RealtimeMixin, vie
     filterset_fields = ["author", "status", "categories__slug", "categories__id"]
     search_fields = ["title", "content", "excerpt"]
     ordering = ["-published_at"]
+    lookup_field = "slug"
 
     def get_resource_name(self):
         return "posts"

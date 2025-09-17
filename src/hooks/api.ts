@@ -39,7 +39,7 @@ export const queryKeys = {
   },
   blogs: {
     list: (params?: any) => ['blogs', 'list', params] as const,
-    detail: (id: number) => ['blogs', 'detail', id] as const,
+    detail: (slug: string) => ['blogs', 'detail', slug] as const,
   },
   pages: {
     list: (params?: any) => ['pages', 'list', params] as const,
@@ -101,14 +101,14 @@ export const useBlogs = (params?: any) => {
   });
 };
 
-export const useBlog = (id: number) => {
+export const useBlog = (slug: string) => {
   return useQuery<Post>({
-    queryKey: queryKeys.blogs.detail(id),
+    queryKey: queryKeys.blogs.detail(slug),
     queryFn: async () => {
-      const response = await api.blogs.retrieve(id);
+      const response = await api.blogs.retrieve(slug);
       return response.data;
     },
-    enabled: !!id,
+    enabled: !!slug,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 };
@@ -131,14 +131,14 @@ export const useCreateBlog = () => {
 export const useUpdateBlog = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<Post, Error, { id: number; data: UpdateBlogRequest; version?: number }>({
-    mutationFn: async ({ id, data, version }) => {
-      const response = await api.blogs.update(id, data, version);
+  return useMutation<Post, Error, { slug: string; data: UpdateBlogRequest; version?: number }>({
+    mutationFn: async ({ slug, data, version }) => {
+      const response = await api.blogs.update(slug, data, version);
       return response.data;
     },
     onSuccess: (data, variables) => {
       // Update the specific blog in cache
-      queryClient.setQueryData(queryKeys.blogs.detail(variables.id), data);
+      queryClient.setQueryData(queryKeys.blogs.detail(variables.slug), data);
       // Invalidate list to ensure consistency
       queryClient.invalidateQueries({ queryKey: ['blogs', 'list'] });
     },
@@ -155,10 +155,10 @@ export const useDeleteBlog = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: number) => api.blogs.delete(id),
-    onSuccess: (_, id) => {
+    mutationFn: (slug: string) => api.blogs.delete(slug),
+    onSuccess: (_, slug) => {
       // Remove from cache
-      queryClient.removeQueries({ queryKey: queryKeys.blogs.detail(id) });
+      queryClient.removeQueries({ queryKey: queryKeys.blogs.detail(slug) });
       // Invalidate list
       queryClient.invalidateQueries({ queryKey: ['blogs', 'list'] });
     },

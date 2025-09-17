@@ -19,6 +19,10 @@ import VillaRenovation from './pages/VillaRenovation';
 import VillaMaintenance from './pages/VillaMaintenance'
 import Fitout from './pages/Fitout'
 import ContactUs from './pages/Contact'
+import Blog from './pages/Blog'
+import BlogDetail from './pages/BlogDetail'
+import Pages from './pages/Pages'
+import PageDetail from './pages/PageDetail'
 
 const queryClient = new QueryClient();
 
@@ -55,6 +59,10 @@ const App = () => (
             <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
             <Route path="/services/fitout" element={<Fitout/>} />
             <Route path="/Contact-us" element={<ContactUs/>} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/pages" element={<Pages />} />
+            <Route path="/page/:slug" element={<PageDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

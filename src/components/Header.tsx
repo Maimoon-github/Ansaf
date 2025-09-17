@@ -57,6 +57,8 @@ const Header = () => {
             </div>
 
             <Link to="/projects">PROJECTS</Link>
+            <Link to="/blog">BLOG</Link>
+            <Link to="/pages">PAGES</Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -139,6 +141,12 @@ const Header = () => {
 
           <Link to="/projects" className="block">
             PROJECTS
+          </Link>
+          <Link to="/blog" className="block">
+            BLOG
+          </Link>
+          <Link to="/pages" className="block">
+            PAGES
           </Link>
 
           <Link to="/contact-us">
