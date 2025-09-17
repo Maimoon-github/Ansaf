@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
 interface WebSocketMessage {
-  type: 'blog_change' | 'page_change';
-  action: 'created' | 'updated' | 'deleted';
-  id: string;
-  data?: any;
-  timestamp: string;
+  type: string;
+  resource: string;
+  id: string | number;
+  payload?: any;
+  timestamp?: string;
 }
 
 interface UseWebSocketOptions {
@@ -129,18 +129,18 @@ export function useWebSocket({
 
 // Hook for real-time blog updates
 export function useBlogWebSocket(queryClient: ReturnType<typeof useQueryClient>) {
-  const wsUrl = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/v1/blogs/`;
+  const wsUrl = `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/v1/posts/`;
 
   return useWebSocket({
     url: wsUrl,
     onMessage: (message) => {
-      if (message.type === 'blog_change') {
+      if (message.type === 'posts.created' || message.type === 'posts.updated' || message.type === 'posts.deleted') {
         // Invalidate and refetch blog queries
         queryClient.invalidateQueries({ queryKey: ['blogs'] });
         queryClient.invalidateQueries({ queryKey: ['blog', message.id] });
 
         // Show notification for real-time updates
-        console.log(`Blog ${message.action}:`, message.id);
+        console.log(`Blog ${message.type.split('.')[1]}:`, message.id);
       }
     },
     onError: (error) => {
@@ -156,13 +156,13 @@ export function usePageWebSocket(queryClient: ReturnType<typeof useQueryClient>)
   return useWebSocket({
     url: wsUrl,
     onMessage: (message) => {
-      if (message.type === 'page_change') {
+      if (message.type === 'pages.created' || message.type === 'pages.updated' || message.type === 'pages.deleted') {
         // Invalidate and refetch page queries
         queryClient.invalidateQueries({ queryKey: ['pages'] });
         queryClient.invalidateQueries({ queryKey: ['page', message.id] });
 
         // Show notification for real-time updates
-        console.log(`Page ${message.action}:`, message.id);
+        console.log(`Page ${message.type.split('.')[1]}:`, message.id);
       }
     },
     onError: (error) => {

@@ -16,26 +16,10 @@ class PostViewSet(OptimisticLockMixin, ETagLastModifiedMixin, RealtimeMixin, vie
     ordering = ["-published_at"]
 
     def get_resource_name(self):
-        return "blogs"
+        return "posts"
 
-    def retrieve(self, request, *args, **kwargs):
-        response = super().retrieve(request, *args, **kwargs)
-        # Increment view count atomically
-        Post.objects.filter(pk=self.get_object().pk).update(views_count=F("views_count") + 1)
-        return response
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if not self.request.user.is_staff:
-            # Limit to published or own drafts
-            qs = qs.filter(status=Post.STATUS_PUBLISHED)
-        return qs
-    queryset = Post.objects.all().select_related("author").prefetch_related("categories", "tags")
-    serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
-    filterset_fields = ["author", "status", "categories__slug", "categories__id"]
-    search_fields = ["title", "content", "excerpt"]
-    ordering = ["-published_at"]
+    def get_realtime_group_name(self):
+        return "posts"
 
     def retrieve(self, request, *args, **kwargs):
         response = super().retrieve(request, *args, **kwargs)

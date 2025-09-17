@@ -10,11 +10,11 @@ class BlogConsumer(AsyncWebsocketConsumer):
     """WebSocket consumer for real-time blog updates"""
 
     async def connect(self):
-        await self.channel_layer.group_add("blogs", self.channel_name)
+        await self.channel_layer.group_add("posts", self.channel_name)
         await self.accept()
 
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard("blogs", self.channel_name)
+        await self.channel_layer.group_discard("posts", self.channel_name)
 
     async def blog_update(self, event):
         """Send blog update to WebSocket"""

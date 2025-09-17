@@ -484,6 +484,10 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        Auth: {
+            username: string;
+            password: string;
+        };
         Category: {
             readonly id: number;
             name: string;
@@ -502,7 +506,9 @@ export interface components {
             readonly created_at: string;
             /** Format: date-time */
             readonly updated_at: string;
-            readonly replies: string;
+            readonly replies: {
+                [key: string]: unknown;
+            }[];
         };
         PageDetail: {
             readonly id: number;
@@ -614,7 +620,9 @@ export interface components {
             readonly created_at?: string;
             /** Format: date-time */
             readonly updated_at?: string;
-            readonly replies?: string;
+            readonly replies?: {
+                [key: string]: unknown;
+            }[];
         };
         PatchedPageDetail: {
             readonly id?: number;
@@ -712,14 +720,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -730,14 +745,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -748,14 +770,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -768,12 +797,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -1420,14 +1450,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -1438,14 +1475,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -1456,14 +1500,21 @@ export interface operations {
             path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Auth"];
+                "application/x-www-form-urlencoded": components["schemas"]["Auth"];
+                "multipart/form-data": components["schemas"]["Auth"];
+            };
+        };
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };
@@ -1476,12 +1527,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Auth"];
+                };
             };
         };
     };

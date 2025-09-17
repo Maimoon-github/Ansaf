@@ -18,6 +18,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 django.setup()
 
 from django.test import Client
+from django.contrib.auth.models import User
 from blogs.models import Post
 from pages.models import Page
 
@@ -27,7 +28,7 @@ async def websocket_test():
     print("Testing WebSocket real-time notifications...")
 
     # Test WebSocket connection
-    uri = "ws://localhost:8000/ws/v1/blogs/"
+    uri = "ws://localhost:8000/ws/v1/posts/"
     try:
         async with websockets.connect(uri) as websocket:
             print("✅ WebSocket connection established")
@@ -56,9 +57,29 @@ def api_test():
 
     client = Client()
 
+    # Create a test user if it doesn't exist
+    try:
+        user = User.objects.get(username='testuser')
+    except User.DoesNotExist:
+        user = User.objects.create_user(
+            username='testuser',
+            email='test@example.com',
+            password='testpass123',
+            is_staff=True
+        )
+        print("✅ Created test user")
+
+    # Login the test user
+    login_success = client.login(username='testuser', password='testpass123')
+    if login_success:
+        print("✅ User logged in successfully")
+    else:
+        print("❌ Failed to login user")
+        return
+
     # Test creating a blog post (should trigger WebSocket notification)
     try:
-        response = client.post('/api/v1/blogs/posts/', {
+        response = client.post('/api/v1/posts/', {
             'title': 'Test Post',
             'content': 'Test content',
             'status': 'draft'
@@ -67,6 +88,7 @@ def api_test():
             print("✅ Blog post created successfully")
         else:
             print(f"❌ Failed to create blog post: {response.status_code}")
+            print(f"Response content: {response.content.decode()}")
     except Exception as e:
         print(f"❌ API test failed: {e}")
 

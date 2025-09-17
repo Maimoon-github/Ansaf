@@ -10,6 +10,18 @@ paths:
       description: Get CSRF token for frontend
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -17,13 +29,29 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/auth/login/:
     post:
       operationId: api_auth_login_create
       description: Login with username/password, return session cookie and CSRF token
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -31,20 +59,40 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/auth/logout/:
     post:
       operationId: api_auth_logout_create
       description: Logout and invalidate session
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/auth/me/:
     get:
       operationId: api_auth_me_retrieve
@@ -57,7 +105,11 @@ paths:
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/categories/:
     get:
       operationId: api_categories_list
@@ -873,6 +925,18 @@ paths:
       description: Get CSRF token for frontend
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -880,13 +944,29 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/v1/auth/login/:
     post:
       operationId: api_v1_auth_login_create
       description: Login with username/password, return session cookie and CSRF token
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
@@ -894,20 +974,40 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/v1/auth/logout/:
     post:
       operationId: api_v1_auth_logout_create
       description: Logout and invalidate session
       tags:
       - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Auth'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Auth'
+        required: true
       security:
       - cookieAuth: []
       - tokenAuth: []
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/v1/auth/me/:
     get:
       operationId: api_v1_auth_me_retrieve
@@ -920,7 +1020,11 @@ paths:
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+          description: ''
   /api/v1/categories/:
     get:
       operationId: api_v1_categories_list
@@ -1732,6 +1836,16 @@ paths:
           description: No response body
 components:
   schemas:
+    Auth:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - username
     Category:
       type: object
       properties:
@@ -1781,7 +1895,10 @@ components:
           format: date-time
           readOnly: true
         replies:
-          type: string
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
           readOnly: true
       required:
       - author
@@ -2018,7 +2135,10 @@ components:
           format: date-time
           readOnly: true
         replies:
-          type: string
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
           readOnly: true
     PatchedPageDetail:
       type: object

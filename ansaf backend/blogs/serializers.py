@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from taggit.serializers import (TagListSerializerField, TaggitSerializer)
 from .models import Post, Category, Comment
+from typing import Any, Dict, List
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -29,7 +30,7 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ("is_approved", "created_at", "updated_at")
 
-    def get_replies(self, obj):
+    def get_replies(self, obj: Comment) -> List[Dict[str, Any]]:
         # Only include approved replies
         qs = obj.replies.filter(is_approved=True)
         return CommentSerializer(qs, many=True, context=self.context).data
@@ -64,9 +65,11 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
             "category_ids",
             "tags",
         ]
-        read_only_fields = ("slug", "views_count", "created_at", "updated_at", "version")
+        read_only_fields = ("slug", "views_count", "created_at", "updated_at", "version", "author")
 
     def create(self, validated_data):
+        # Automatically set the author from the request user
+        validated_data['author'] = self.context['request'].user
         category_ids = validated_data.pop("category_ids", [])
         tags = validated_data.pop("tags", [])
         post = super().create(validated_data)

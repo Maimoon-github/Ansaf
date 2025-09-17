@@ -6,12 +6,19 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.middleware.csrf import get_token
+from rest_framework import serializers
+
+
+class AuthSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
 
 
 class AuthViewSet(viewsets.ViewSet):
     """
     Authentication endpoints for login, logout, and user info.
     """
+    serializer_class = AuthSerializer
 
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def login(self, request):
