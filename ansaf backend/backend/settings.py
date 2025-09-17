@@ -104,7 +104,7 @@ INSTALLED_APPS = [
     "django_filters",
     "taggit",
     "drf_spectacular",  # OpenAPI schema generation
-    "channels",  # WebSockets support
+    # "channels",  # WebSockets support - temporarily disabled
     # Local apps
     "blogs",
     "pages",
@@ -142,15 +142,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "backend.wsgi.application"
 
-# ASGI application for Channels
-ASGI_APPLICATION = "backend.asgi.application"
+# ASGI application for Channels - temporarily disabled
+# ASGI_APPLICATION = "backend.asgi.application"
 
-# Channel layers for WebSockets
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Use in-memory for development
-    },
-}
+# Channel layers for WebSockets - temporarily disabled
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",  # Use in-memory for development
+#     },
+# }
 
 
 # Database
