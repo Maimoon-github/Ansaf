@@ -119,6 +119,7 @@ export const api = {
   // Pages
   pages: {
     list: (params?: any) => apiClient.get('/pages/', { params }),
+    myPages: () => apiClient.get('/pages/my_pages/'),
     create: (data: any) => apiClient.post('/pages/', data),
     retrieve: (slug: string) => apiClient.get(`/pages/${slug}/`),
     update: (slug: string, data: any, version?: number) => {

@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import logo from "../assets/headerlogo.png";
 import { Link } from 'react-router-dom';
+import { useMyPages, useAuth } from '../hooks/api';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [pagesDropdownOpen, setPagesDropdownOpen] = useState(false);
 
   const handleClick = () => setOpen(!open);
+
+  // Fetch user authentication status and pages
+  const { data: user } = useAuth();
+  const { data: myPages, isLoading: pagesLoading } = useMyPages();
 
   const NavItems = [
     { title: "Home", url: "/", cName: "nav-links" },
@@ -25,6 +31,7 @@ export default function Navbar() {
         { title: "Fitout", url: "/services/fitout" },
       ],
     },
+    { title: "Blogs", url: "/blog", cName: "nav-links" },
     { title: "Contact", url: "/Contact-us", cName: "nav-links" },
   ];
 
@@ -231,6 +238,42 @@ export default function Navbar() {
               </li>
             );
           })}
+
+          {/* User Pages Dropdown */}
+          {user && myPages && myPages.length > 0 && (
+            <li className="dropdown">
+              <a
+                href="#"
+                className="nav-links"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.innerWidth <= 850) {
+                    setPagesDropdownOpen(!pagesDropdownOpen);
+                  }
+                }}
+              >
+                My Pages <i className="fas fa-chevron-down"></i>
+              </a>
+              <div
+                className="dropdown-content"
+                style={{
+                  display:
+                    window.innerWidth <= 850
+                      ? pagesDropdownOpen
+                        ? "block"
+                        : "none"
+                      : undefined,
+                }}
+              >
+                {myPages.map((page: any) => (
+                  <Link key={page.slug} to={`/page/${page.slug}`}>
+                    {page.title}
+                  </Link>
+                ))}
+              </div>
+            </li>
+          )}
+
           <a href="https://calendly.com/ansafcont/30min?month=2025-08" className="nav-button">
             Let's Connect
           </a>

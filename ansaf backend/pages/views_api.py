@@ -39,30 +39,12 @@ class PageViewSet(OptimisticLockMixin, ETagLastModifiedMixin, RealtimeMixin, vie
     def perform_update(self, serializer):
         serializer.save()
 
-    @action(detail=True, methods=["get"], permission_classes=[permissions.IsAdminUser])
-    def raw(self, request, slug=None):
-        page = self.get_object()
-        return Response({"content": page.content})
-    queryset = Page.objects.all()
-    lookup_field = "slug"
-    permission_classes = [IsStaffOrReadOnly]
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if self.request.user.is_authenticated and self.request.user.is_staff:
-            return qs
-        return qs.published()
-
-    def get_serializer_class(self):
-        if self.action == "list":
-            return PageListSerializer
-        return PageDetailSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user if self.request.user.is_authenticated else None)
-
-    def perform_update(self, serializer):
-        serializer.save()
+    @action(detail=False, methods=["get"], permission_classes=[permissions.IsAuthenticated])
+    def my_pages(self, request):
+        """Get pages authored by the current user"""
+        pages = self.get_queryset().filter(author=request.user)
+        serializer = self.get_serializer(pages, many=True)
+        return Response(serializer.data)
 
     @action(detail=True, methods=["get"], permission_classes=[permissions.IsAdminUser])
     def raw(self, request, slug=None):

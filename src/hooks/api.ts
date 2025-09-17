@@ -44,6 +44,7 @@ export const queryKeys = {
   pages: {
     list: (params?: any) => ['pages', 'list', params] as const,
     detail: (slug: string) => ['pages', 'detail', slug] as const,
+    myPages: () => ['pages', 'myPages'] as const,
   },
 };
 
@@ -229,5 +230,16 @@ export const useDeletePage = () => {
       queryClient.removeQueries({ queryKey: queryKeys.pages.detail(slug) });
       queryClient.invalidateQueries({ queryKey: ['pages', 'list'] });
     },
+  });
+};
+
+export const useMyPages = () => {
+  return useQuery({
+    queryKey: queryKeys.pages.myPages(),
+    queryFn: async () => {
+      const response = await api.pages.myPages();
+      return response.data;
+    },
+    staleTime: 2 * 60 * 1000,
   });
 };
