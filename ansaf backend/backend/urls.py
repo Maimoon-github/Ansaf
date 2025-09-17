@@ -17,13 +17,32 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
+from .views import AuthViewSet
+
+# Auth router
+auth_router = DefaultRouter()
+auth_router.register(r'auth', AuthViewSet, basename='auth')
 
 api_patterns = [
     path("", include("blogs.urls")),
     path("", include("pages.urls")),
+    path("", include(auth_router.urls)),
+]
+
+# Versioned API patterns
+api_v1_patterns = [
+    path("", include(api_patterns)),
 ]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/", include(api_v1_patterns)),
+    # Keep old API for backward compatibility during migration
     path("api/", include(api_patterns)),
+    # OpenAPI schema
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ]

@@ -1,12 +1,13 @@
 from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.db.models import F
+from backend.mixins import OptimisticLockMixin, ETagLastModifiedMixin
 from .models import Post, Category, Comment
 from .serializers import PostSerializer, CategorySerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
 
 
-class PostViewSet(viewsets.ModelViewSet):
+class PostViewSet(OptimisticLockMixin, ETagLastModifiedMixin, viewsets.ModelViewSet):
     queryset = Post.objects.all().select_related("author").prefetch_related("categories", "tags")
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]

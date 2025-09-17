@@ -1,6 +1,7 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from backend.mixins import OptimisticLockMixin, ETagLastModifiedMixin
 
 from .models import Page
 from .serializers import PageListSerializer, PageDetailSerializer
@@ -13,7 +14,7 @@ class IsStaffOrReadOnly(permissions.BasePermission):
         return request.user and request.user.is_staff
 
 
-class PageViewSet(viewsets.ModelViewSet):
+class PageViewSet(OptimisticLockMixin, ETagLastModifiedMixin, viewsets.ModelViewSet):
     queryset = Page.objects.all()
     lookup_field = "slug"
     permission_classes = [IsStaffOrReadOnly]

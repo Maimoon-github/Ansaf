@@ -48,6 +48,7 @@ class Page(models.Model):
 	og_image = models.ImageField(upload_to="pages/og/", null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	version = models.PositiveIntegerField(default=1, help_text="Version for optimistic locking")
 
 	objects = PageQuerySet.as_manager()
 
@@ -84,6 +85,9 @@ class Page(models.Model):
 		# Auto set published_at if publishing now
 		if self.status == self.STATUS_PUBLISHED and not self.published_at:
 			self.published_at = timezone.now()
+		# Increment version on updates (not on creation)
+		if self.pk:
+			self.version += 1
 		# Sanitize content defensively
 		if self.content:
 			self.content = bleach.clean(

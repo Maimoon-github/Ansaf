@@ -51,6 +51,7 @@ class Post(models.Model):
 	published_at = models.DateTimeField(null=True, blank=True, help_text="When the post becomes public")
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
+	version = models.PositiveIntegerField(default=1, help_text="Version for optimistic locking")
 	cover_image = models.ImageField(upload_to="posts/covers/", null=True, blank=True)
 	views_count = models.PositiveBigIntegerField(default=0, editable=False)
 	categories = models.ManyToManyField(Category, related_name="posts", blank=True)
@@ -84,6 +85,9 @@ class Post(models.Model):
 		# Auto set published_at if moving to published without timestamp
 		if self.status == self.STATUS_PUBLISHED and not self.published_at:
 			self.published_at = timezone.now()
+		# Increment version on updates (not on creation)
+		if self.pk:
+			self.version += 1
 		super().save(*args, **kwargs)
 
 

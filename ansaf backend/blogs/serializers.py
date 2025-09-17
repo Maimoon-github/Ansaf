@@ -57,13 +57,14 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
             "published_at",
             "created_at",
             "updated_at",
+            "version",
             "cover_image",
             "views_count",
             "categories",
             "category_ids",
             "tags",
         ]
-        read_only_fields = ("slug", "views_count", "created_at", "updated_at")
+        read_only_fields = ("slug", "views_count", "created_at", "updated_at", "version")
 
     def create(self, validated_data):
         category_ids = validated_data.pop("category_ids", [])

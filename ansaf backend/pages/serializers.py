@@ -31,5 +31,6 @@ class PageDetailSerializer(serializers.ModelSerializer):
             "og_image",
             "created_at",
             "updated_at",
+            "version",
         ]
-        read_only_fields = ["author"]
+        read_only_fields = ["author", "version"]
