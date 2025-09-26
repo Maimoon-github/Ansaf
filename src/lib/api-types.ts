@@ -515,10 +515,12 @@ export interface components {
             title: string;
             slug?: string;
             content?: string;
+            excerpt?: string;
             status?: components["schemas"]["StatusEnum"];
             /** Format: date-time */
             published_at?: string | null;
             readonly author: number | null;
+            readonly author_username?: string;
             meta_title?: string;
             meta_description?: string;
             /** Format: uri */
@@ -529,6 +531,12 @@ export interface components {
             readonly updated_at: string;
             /** @description Version for optimistic locking */
             readonly version: number;
+            /** Format: uri */
+            cover_image?: string | null;
+            readonly views_count?: number;
+            readonly categories?: components["schemas"]["Category"][];
+            category_ids?: number[];
+            tags?: string[];
         };
         PageList: {
             readonly id: number;
@@ -537,10 +545,13 @@ export interface components {
             status?: components["schemas"]["StatusEnum"];
             /** Format: date-time */
             published_at?: string | null;
+            readonly author_username?: string;
             meta_title?: string;
             meta_description?: string;
             /** Format: date-time */
             readonly updated_at: string;
+            readonly views_count?: number;
+            tags?: string[];
         };
         PaginatedCategoryList: {
             /** @example 123 */

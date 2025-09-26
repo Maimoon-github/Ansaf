@@ -6,7 +6,10 @@ import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 
 const Pages = () => {
-  const { data: pagesResponse, isLoading, error } = usePages({ status: 'published' });
+  console.log('Pages component rendering...');
+  const { data: pagesResponse, isLoading, error, isError } = usePages({ status: 'published' });
+
+  console.log('Pages data:', { pagesResponse, isLoading, error, isError });
 
   if (isLoading) {
     return (
@@ -67,25 +70,36 @@ const Pages = () => {
                 </CardTitle>
                 <CardDescription>
                   <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <span>By {page.author_username}</span>
                     {page.published_at && (
-                      <span>{format(new Date(page.published_at), 'MMM dd, yyyy')}</span>
+                      <>
+                        <span>•</span>
+                        <span>{format(new Date(page.published_at), 'MMM dd, yyyy')}</span>
+                      </>
                     )}
-                    <Badge variant={page.status === 'published' ? 'default' : 'secondary'}>
-                      {page.status}
-                    </Badge>
                   </div>
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {page.meta_description && (
-                  <p className="text-gray-700 mb-4 line-clamp-3">{page.meta_description}</p>
+                {page.excerpt && (
+                  <p className="text-gray-700 mb-4 line-clamp-3">{page.excerpt}</p>
                 )}
-                <Link
-                  to={`/page/${page.slug}`}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  Read more →
-                </Link>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {page.tags?.map((tag, index) => (
+                    <Badge key={index} variant="secondary" className="text-xs">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex items-center justify-between text-sm text-gray-600">
+                  <span>{page.views_count || 0} views</span>
+                  <Link
+                    to={`/page/${page.slug}`}
+                    className="text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    Read more →
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           ))}

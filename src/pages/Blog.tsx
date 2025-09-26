@@ -1,9 +1,11 @@
+import HeaderNew from '@/components/Header2';
 import { useBlogs } from '@/hooks/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import Footer from '@/components/Footer';
 
 const Blog = () => {
   console.log('Blog component rendering...');

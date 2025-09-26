@@ -1,5 +1,6 @@
 import { usePage } from '@/hooks/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
@@ -65,17 +66,29 @@ const PageDetail = () => {
             <CardTitle className="text-3xl mb-4">{page.title}</CardTitle>
             <CardDescription>
               <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                <span>By {page.author_username}</span>
                 {page.published_at && (
-                  <span>Published {format(new Date(page.published_at), 'MMMM dd, yyyy')}</span>
+                  <span>{format(new Date(page.published_at), 'MMMM dd, yyyy')}</span>
                 )}
-                <span>Last updated {format(new Date(page.updated_at), 'MMMM dd, yyyy')}</span>
+                <span>{page.views_count || 0} views</span>
               </div>
-              {page.meta_description && (
-                <p className="text-gray-700 italic">{page.meta_description}</p>
+              {page.tags && page.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {page.tags.map((tag, index) => (
+                    <Badge key={index} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
               )}
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {page.excerpt && (
+              <div className="text-lg text-gray-700 mb-6 italic border-l-4 border-gray-300 pl-4">
+                {page.excerpt}
+              </div>
+            )}
             <div
               className="prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: page.content || '<p>No content available.</p>' }}

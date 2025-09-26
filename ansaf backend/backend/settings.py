@@ -253,13 +253,13 @@ SPECTACULAR_SETTINGS = {
 # Taggit
 TAGGIT_CASE_INSENSITIVE = True
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 # SECURITY NOTE: In production, set SECRET_KEY via environment variable and DEBUG = False
 import os
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", SECRET_KEY)
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",") if not DEBUG else ["localhost", "127.0.0.1", "testserver"]
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

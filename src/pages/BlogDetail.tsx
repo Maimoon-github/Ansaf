@@ -1,3 +1,4 @@
+import HeaderNew from '@/components/Header2';
 import { useBlog } from '@/hooks/api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -6,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import Footer from '@/components/Footer';
 
 const BlogDetail = () => {
   const { slug } = useParams<{ slug: string }>();

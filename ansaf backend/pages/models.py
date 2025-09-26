@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from taggit.managers import TaggableManager
 import bleach
 
 # Sanitization allow-lists (extend later if needed)
@@ -12,6 +13,35 @@ ALLOWED_ATTRIBUTES = {
 	"a": ["href", "title", "rel"],
 }
 ALLOWED_PROTOCOLS = ["http", "https", "mailto"]
+
+
+class Category(models.Model):
+	name = models.CharField(max_length=120, unique=True)
+	slug = models.SlugField(max_length=140, unique=True, blank=True)
+	parent = models.ForeignKey(
+		"self", related_name="children", on_delete=models.CASCADE, null=True, blank=True
+	)
+	created_at = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		verbose_name_plural = "Categories"
+		ordering = ["name"]
+
+	def __str__(self):
+		return self.name
+
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			base = slugify(self.name)[:140]
+			slug = base
+			i = 1
+			while Category.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+				suffix = f"-{i}"
+				trim = 140 - len(suffix)
+				slug = f"{base[:trim]}{suffix}"
+				i += 1
+			self.slug = slug
+		super().save(*args, **kwargs)
 
 
 class PageQuerySet(models.QuerySet):
@@ -34,6 +64,7 @@ class Page(models.Model):
 	title = models.CharField(max_length=255)
 	slug = models.SlugField(max_length=255, unique=True, blank=True)
 	content = models.TextField(blank=True)
+	excerpt = models.CharField(max_length=512, blank=True)
 	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_DRAFT)
 	published_at = models.DateTimeField(null=True, blank=True)
 	author = models.ForeignKey(
@@ -49,6 +80,10 @@ class Page(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 	version = models.PositiveIntegerField(default=1, help_text="Version for optimistic locking")
+	cover_image = models.ImageField(upload_to="pages/covers/", null=True, blank=True)
+	views_count = models.PositiveBigIntegerField(default=0, editable=False)
+	categories = models.ManyToManyField(Category, related_name="pages", blank=True)
+	tags = TaggableManager(blank=True)
 
 	objects = PageQuerySet.as_manager()
 

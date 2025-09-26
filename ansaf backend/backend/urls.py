@@ -21,6 +21,11 @@ from rest_framework.routers import DefaultRouter
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from .views import AuthViewSet
 
+# Admin site customization
+admin.site.site_header = "Ansaf Administration"
+admin.site.site_title = "Ansaf Site Administration"
+admin.site.index_title = "Ansaf Site Administration"
+
 # Auth router
 auth_router = DefaultRouter()
 auth_router.register(r'auth', AuthViewSet, basename='auth')
