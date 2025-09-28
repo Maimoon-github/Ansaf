@@ -1,6 +1,6 @@
 # File Tree: dream-craft-react-main
 
-Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-main`
+Root path: `/home/maimoon/Documents/Project Repos/dream-craft-react-main`
 
 ```
 ├── 📁 .git/ 🚫 (auto-hidden)
@@ -9,14 +9,23 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 │   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
 │   │   ├── 🐍 __init__.py
 │   │   ├── 🐍 asgi.py
+│   │   ├── 🐍 consumers.py
+│   │   ├── 🐍 middleware.py
+│   │   ├── 🐍 mixins.py
+│   │   ├── 🐍 routing.py
 │   │   ├── 🐍 settings.py
 │   │   ├── 🐍 urls.py
+│   │   ├── 🐍 views.py
 │   │   └── 🐍 wsgi.py
 │   ├── 📁 blogs/
 │   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
 │   │   ├── 📁 migrations/
 │   │   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
 │   │   │   ├── 🐍 0001_initial.py
+│   │   │   ├── 🐍 0002_post_version.py
+│   │   │   ├── 🐍 0003_mediaasset_reaction_comment_author_email_hash_and_more.py
+│   │   │   ├── 🐍 0004_remove_post_content_post_body.py
+│   │   │   ├── 🐍 0005_alter_post_body.py
 │   │   │   └── 🐍 __init__.py
 │   │   ├── 🐍 __init__.py
 │   │   ├── 🐍 admin.py
@@ -24,31 +33,41 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 │   │   ├── 🐍 models.py
 │   │   ├── 🐍 permissions.py
 │   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 sitemaps.py
 │   │   ├── 🐍 tests.py
 │   │   ├── 🐍 urls.py
-│   │   ├── 🐍 views.py
 │   │   └── 🐍 views_api.py
-│   ├── 📁 pages/
+│   ├── 📁 logs/ 🚫 (auto-hidden)
+│   ├── 📁 middleware/
 │   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
-│   │   ├── 📁 migrations/
-│   │   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
-│   │   │   ├── 🐍 0001_initial.py
-│   │   │   └── 🐍 __init__.py
 │   │   ├── 🐍 __init__.py
-│   │   ├── 🐍 admin.py
-│   │   ├── 🐍 apps.py
-│   │   ├── 🐍 models.py
-│   │   ├── 🐍 serializers.py
-│   │   ├── 🐍 tests.py
-│   │   ├── 🐍 urls.py
-│   │   ├── 🐍 utils.py
-│   │   ├── 🐍 views.py
-│   │   └── 🐍 views_api.py
+│   │   └── 🐍 canonical_host.py
 │   ├── 📖 README.md
+│   ├── 📝 backend_tree.md
 │   ├── 📄 db.sqlite3
 │   ├── 🐍 manage.py
-│   └── 📄 requirements.txt
+│   ├── 📄 requirements.txt
+│   └── ⚙️ schema.yml
+├── 📁 dist/ 🚫 (auto-hidden)
 ├── 📁 node_modules/ 🚫 (auto-hidden)
+├── 📁 pages/
+│   ├── 📁 __pycache__/ 🚫 (auto-hidden)
+│   ├── 📁 migrations/
+│   │   ├── 📁 __pycache__/ 🚫 (auto-hidden)
+│   │   ├── 🐍 0001_initial.py
+│   │   ├── 🐍 0002_page_version.py
+│   │   ├── 🐍 0003_page_cover_image_page_excerpt_page_tags_and_more.py
+│   │   └── 🐍 __init__.py
+│   ├── 🐍 __init__.py
+│   ├── 🐍 admin.py
+│   ├── 🐍 apps.py
+│   ├── 🐍 models.py
+│   ├── 🐍 serializers.py
+│   ├── 🐍 tests.py
+│   ├── 🐍 urls.py
+│   ├── 🐍 utils.py
+│   ├── 🐍 views.py
+│   └── 🐍 views_api.py
 ├── 📁 public/
 │   ├── 🖼️ ANSAAAFS-logo.png
 │   ├── 🖼️ favicon.ico
@@ -229,6 +248,7 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 │   │   ├── 📄 StatsSection.tsx
 │   │   ├── 📄 VillaCarousel.tsx
 │   │   ├── 📄 VillaRenovationslider.tsx
+│   │   ├── 📄 WebSocketProvider.tsx
 │   │   ├── 📄 Whoweare.tsx
 │   │   ├── 📄 WhyChooseFitout.tsx
 │   │   ├── 📄 WhyChooseMaintaince.tsx
@@ -241,17 +261,26 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 │   │   ├── 📄 villaRenovationparas.tsx
 │   │   └── 📄 whyinteriordesign.tsx
 │   ├── 📁 hooks/
+│   │   ├── 📄 api.ts
 │   │   ├── 📄 use-mobile.tsx
-│   │   └── 📄 use-toast.ts
+│   │   ├── 📄 use-toast.ts
+│   │   └── 📄 websocket.ts
 │   ├── 📁 lib/
+│   │   ├── 📄 api-types.ts
+│   │   ├── 📄 api.ts
+│   │   ├── 📄 types.ts
 │   │   └── 📄 utils.ts
 │   ├── 📁 pages/
 │   │   ├── 📄 About.tsx
+│   │   ├── 📄 Blog.tsx
+│   │   ├── 📄 BlogDetail.tsx
 │   │   ├── 📄 Contact.tsx
 │   │   ├── 📄 Fitout.tsx
 │   │   ├── 📄 Index.tsx
 │   │   ├── 📄 InteriorDesign.tsx
 │   │   ├── 📄 NotFound.tsx
+│   │   ├── 📄 PageDetail.tsx
+│   │   ├── 📄 Pages.tsx
 │   │   ├── 📄 Services.tsx
 │   │   ├── 📄 VillaConstruction.tsx
 │   │   ├── 📄 VillaDesign.tsx
@@ -262,6 +291,7 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 │   ├── 🎨 index.css
 │   ├── 📄 main.tsx
 │   └── 📄 vite-env.d.ts
+├── 🔒 .env 🚫 (auto-hidden)
 ├── 🚫 .gitignore
 ├── 📖 README.md
 ├── 📄 bun.lockb
@@ -281,3 +311,6 @@ Root path: `c:\Users\amin\OneDrive\Documents\Maimoon VS Code\dream-craft-react-m
 ├── 📄 vite.config.ts.timestamp-1754926765339-29034fef68d48.mjs
 └── 📄 vite.config.ts.timestamp-1755602916954-8cd2a1ca0947f.mjs
 ```
+
+---
+
