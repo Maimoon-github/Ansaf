@@ -20,6 +20,12 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from .views import AuthViewSet
+# backend/urls.py (additions at top)
+from django.contrib.sitemaps.views import sitemap
+from blogs.sitemaps import PostSitemap
+
+sitemaps = {"posts": PostSitemap}
+
 
 # Admin site customization
 admin.site.site_header = "Ansaf Administration"
@@ -50,4 +56,6 @@ urlpatterns = [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    # later in urlpatterns, add:
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap-xml"),
 ]
