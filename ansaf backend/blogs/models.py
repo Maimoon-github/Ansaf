@@ -14,13 +14,10 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
-
 from taggit.managers import TaggableManager
-
 import uuid
-
-
-# ---------------------------------------------------------------------------
+from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 # Category
 # ---------------------------------------------------------------------------
 class Category(models.Model):
@@ -89,7 +86,7 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name="posts",
     )
-    content = models.TextField()  # sanitized HTML expected
+    body = RichTextUploadingField(null=True, blank=True)  # sanitized HTML expected
     excerpt = models.CharField(max_length=512, blank=True)  # legacy summary
     summary = models.TextField(blank=True)  # short summary for listings/SEO
 

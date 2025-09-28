@@ -105,10 +105,12 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "channels",  # enable WebSocket support (consumers/asgi rely on this)
     'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
     
     # Local apps
     "blogs",
-    "pages",
+    # "pages",
 ]
 
 
@@ -198,6 +200,8 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # ------------------------------------------------------------------------------
 # CORS
@@ -342,3 +346,21 @@ CHANNEL_LAYERS = {
     }
 }
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 500,
+    "width": "100%",
+    "menubar": False,
+    "plugins": "advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste help wordcount",
+    "toolbar": "undo redo | formatselect | bold italic backcolor | \
+                alignleft aligncenter alignright alignjustify | \
+                bullist numlist outdent indent | removeformat | help",
+    "content_css": "/static/css/tinymce-content.css",  # optional custom styling
+}

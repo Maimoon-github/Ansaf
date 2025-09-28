@@ -13,8 +13,8 @@ from django.contrib import admin
 
 from .models import Category, Post, Comment, Reaction, MediaAsset
 
-
-# ------------------------------------------------------------------------------
+from django.contrib import admin
+from .models import Post
 # Admin actions
 # ------------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ("status", "author", "categories", "allow_comments")
     search_fields = (
         "title",
-        "content",
+        "body",
         "excerpt",
         "summary",
         "meta_title",
