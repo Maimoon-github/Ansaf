@@ -17,8 +17,9 @@ import InteriorDesign from './pages/InteriorDesign'
 import VillaRenovation from './pages/VillaRenovation';
 import VillaMaintenance from './pages/VillaMaintenance'
 import Fitout from './pages/Fitout'
-import ContactUs from './pages/Contact'
-
+import ContactUs from './pages/Contact' 
+import BlogDetailed from './pages/BlogDetailed'
+import Blogs from './pages/Blogs'
 const queryClient = new QueryClient();
 
  const ScrollToTop = () => {
@@ -53,6 +54,8 @@ const App = () => (
           <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
           <Route path="/services/fitout" element={<Fitout/>} />
           <Route path="/Contact-us" element={<ContactUs/>} />
+          <Route path="/blogs" element={<Blogs/>} />
+          <Route path="/blogs/:id" element={<BlogDetailed />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

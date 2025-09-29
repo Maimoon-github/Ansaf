@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import bgImage from "../assets/fulllbaner.png";
+import bgImage from "../assets/fulllbaner.webp";
 
 const WhyChooseUs = () => {
   const skills = [
@@ -57,8 +57,8 @@ const WhyChooseUs = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-center"
-      style={{ backgroundImage: `url(${bgImage})` }}
+      className="relative bg-cover bg-center bg-no-repeat  flex items-center justify-center"
+      style={{ backgroundImage: `url(${bgImage})` ,minHeight: '590px'}}
     >
       <div className="absolute inset-0 bg-black opacity-40"></div>
 

@@ -16,7 +16,6 @@ export default function Navbar() {
       url: "/services",
       cName: "nav-links",
       dropdown: [
-        { title: "View All", url: "/services" },
         { title: "Villa Construction", url: "/services/villa-construction" },
         { title: "Villa Design", url: "/services/villa-design" },
         { title: "Interior Design", url: "/services/interior-design" },
@@ -231,7 +230,7 @@ export default function Navbar() {
               </li>
             );
           })}
-          <a href="https://calendly.com/ansafcont/30min?month=2025-08" className="nav-button">
+          <a href="https://calendly.com/ansafcont-building-contracting/30min" className="nav-button">
             Let's Connect
           </a>
         </ul>

@@ -1,5 +1,5 @@
 import HeaderNew from '@/components/Header2';
-import villabgimage from '../assets/house-with-balcony-ladder-side 1.png'
+import villabgimage from '../assets/house-with-balcony-ladder-side 1.webp'
 import Footer from '@/components/Footer';
 import WhyChooseUs from '@/components/WhychooseVilla';
 import villaLeftImg from "@/assets/villaconstructionleft.png";
@@ -7,22 +7,22 @@ import villaRightImg from "@/assets/villaconstructionright.png";
 import { Link } from 'react-router-dom';
 
 import ImageSlider  from "../components/VillaCarousel";
-import Villa1 from "../assets/viilaCaarousal1.png";
-import Villa2 from "../assets/viilaCaarousal1.png";
+import Villa1 from "../assets/vilaconstructions.jpeg";
+import Villa2 from "../assets/villls-constr.webp";
 const villaSlides = [
   {
     id: 1,
-    image: Villa1,
+    image: Villa2,
     title: "Build Your Dream Villa in Dubai",
     desc:
       "Imagine waking up every day in a home that reflects your taste, lifestyle, and the luxurious essence of Dubai. Choosing the right villa construction company in Dubai can make all the difference.",
   },
   {
     id: 2,
-    image: Villa2,
-    title: "MODERN MAKEOVER",
+    image:  Villa1,
+    title: "Expert Villa Construction in Dubai",
     desc:
-      "Transform your villa with a modern aesthetic, clean lines, and updated interiors. Experience style with substance at ANSAF Villas.",
+      "Turn your vision into reality with our villa construction services in Dubai. From modern architectural designs to premium finishes, we ensure every detail is crafted to perfection. With a focus on quality, transparency, and timely delivery, we build homes that embody elegance, comfort, and long-lasting value.",
   },
 ];
 
@@ -34,25 +34,32 @@ const VillaConstruction = () => {
   };
   return (
     <>
-   <div
-      className="bg-cover bg-center min-h-screen"
-      style={{ backgroundImage: `url(${villabgimage})` }}
-    > 
-    <HeaderNew/>
-     <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
-        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
-          <h1 className="text-3xl font-bold mb-4 leading-snug">
-           Villa Construction
-          </h1>
-          <p className="text-sm mb-6">
-           Embarking on the journey to build your dream villa in Dubai, UAE, starts with choosing the right construction partner. Look no further – Ansaf Cont. is widely recognized as one of the top villa construction contractors in the region.
-          </p>
-          <Link to={'https://calendly.com/ansafcont/30min?month=2025-08'}> <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
-              BOOK AN APPOINMENT
-            </button></Link>
-        </div>
+    <div
+  className="bg-cover bg-center "
+  style={{ backgroundImage: `url(${villabgimage})`, height:'700px' }}
+> 
+  <HeaderNew />
+
+  <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
+    {/* Alignment wrapper same as Navbar */}
+    <div className="w-[90%] max-w-[1200px] mx-auto flex justify-end">
+      <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+        <h1 className="text-3xl font-bold mb-4 leading-snug">
+          Villa Construction
+        </h1>
+        <p className="text-sm mb-6">
+          Embarking on the journey to build your dream villa in Dubai, UAE, starts with choosing the right construction partner. Look no further – Ansaf Cont. is widely recognized as one of the top villa construction contractors in the region.
+        </p>
+        <Link to={"https://calendly.com/ansafcont-building-contracting/30min"}>
+          <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
+            BOOK AN APPOINTMENT
+          </button>
+        </Link>
       </div>
     </div>
+  </div>
+</div>
+
 
    
        <ImageSlider slides={villaSlides} />
@@ -125,9 +132,9 @@ const VillaConstruction = () => {
             <p className="text-gray-700 mb-4">
              Building a villa isn't just about construction; it's about crafting a lifestyle. At Ansaf Cont, we're more than just villa builders – we're your partners in making your dream home a reality. Our experienced team meticulously manages every phase of the villa construction process. From the initial site analysis and architectural design to robust structural development and exquisite interior detailing, we ensure your villa is built to the highest standards of quality and precision. Whether you envision a sleek contemporary design or a timeless classic, Ansaf Cont is dedicated to transforming your dream home into a lasting reality.
             </p>
-            <button className="mt-2 px-5 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+           <Link to={'https://calendly.com/ansafcont-building-contracting/30min'}> <button className="mt-2 px-5 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
               Send Enquiry →
-            </button>
+            </button></Link>
           </div>
 
           {/* Right Block */}
@@ -140,9 +147,10 @@ const VillaConstruction = () => {
             <p className="text-gray-700 mb-4">
              At Ansaf Cont, we specialize in delivering the best villa construction services in Dubai, seamlessly blending luxury with functionality. Our commitment to quality, attention to detail, and client-focused approach ensures each villa is not just a structure, but a personalized sanctuary. From architectural planning to the final finishing touches, we turn visions into extraordinary living spaces that reflect elegance and individuality.
             </p>
-            <button className="mt-2 px-5 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
+           <Link to={'https://calendly.com/ansafcont-building-contracting/30min'}>  <button className="mt-2 px-5 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
               Send Enquiry →
             </button>
+            </Link>
           </div>
         </div>
       </div>

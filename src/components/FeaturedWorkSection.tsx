@@ -1,20 +1,20 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import projectHouse1 from "@/assets/project-house-1.jpg";
-import projectBuilding1 from "@/assets/project-building-1.jpg";
+import projectBuilding1 from "@/assets/villa-construction-home.jpg";
 import projectVilla1 from "@/assets/project-villa-1.jpg";
-import projectApartment1 from "@/assets/project-apartment-1.jpg";
+import projectApartment1 from "@/assets/vila-riverside.webp";
 import projectHouse2 from "@/assets/project-house-2.jpg";
-import projectBuilding2 from "@/assets/project-building-2.jpg";
+import projectBuilding2 from "@/assets/villa-buisness-complex.jpg";
 
 const FeaturedWorkSection = () => {
   const projects = [
     { image: projectHouse1, name: "Modern Family Home", category: "House" },
-    { image: projectBuilding1, name: "Corporate Center", category: "Building" },
+    { image: projectBuilding1, name: "Corporate Center", category: "Villa" },
     { image: projectVilla1, name: "Luxury Villa Estate", category: "Villa" },
-    { image: projectApartment1, name: "Riverside Apartments", category: "Building" },
+    { image: projectApartment1, name: "Riverside Villa", category: "Villa" },
     { image: projectHouse2, name: "Contemporary House", category: "House" },
-    { image: projectBuilding2, name: "Business Complex", category: "Building" },
+    { image: projectBuilding2, name: "Business Complex", category: "Villa" },
   ];
 
   return (

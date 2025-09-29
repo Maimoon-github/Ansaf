@@ -15,12 +15,12 @@ const VillaRenovationSection = () => {
         <div>
           <h2 className="text-2xl md:text-4xl font-bold mb-6 leading-tight">
             Transform Your Villa <br />
-            With Precision Renovation By Ansf Cont.
+            With Precision Renovation By Ansaf Cont.
           </h2>
 
           <p className="text-gray-600 mb-5" style={{fontSize: '22px'}}>
             Redefine luxury living with expert villa renovations across Dubai and Abu Dhabi.
-            Specializing in complete overhauls, targeted remodels, and custom upgrades, Ansf Cont.
+            Specializing in complete overhauls, targeted remodels, and custom upgrades, Ansaf Cont.
             blends innovative design with meticulous craftsmanship to transform outdated homes into
             modern, functional retreats tailored to your lifestyle. Every detail is engineered for
             elegance, efficiency, and lasting quality.

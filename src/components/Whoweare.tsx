@@ -1,10 +1,10 @@
 import React from "react";
-import buildingImage from "../assets/who-we-are-about-us.png"; // adjust path if needed
+import buildingImage from "../assets/who-we-are-about-us.webp"; // adjust path if needed
 import { FaRegSmile, FaRegCheckCircle } from "react-icons/fa";
 import { HiOutlineUsers } from "react-icons/hi";
 import { LiaBusinessTimeSolid } from "react-icons/lia";
 import StatsSection from "./StatsSection";
-import ScopeofService from '../assets/scope-of-service.png'
+import ScopeofService from '../assets/scope-of-service.webp'
 import OurMission from '../assets/our-mission.png'
 const Whoweare = () => {
   return (

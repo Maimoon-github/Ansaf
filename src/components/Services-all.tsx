@@ -1,5 +1,4 @@
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import React from "react";
 import { Link } from "react-router-dom";
 import constructionImg from "@/assets/servicespageiamge.png"; // Replace with your actual image path
 import { FaCheck } from "react-icons/fa";
@@ -63,7 +62,7 @@ export default function ServicesSection() {
         
         {/* Left - Image with Box */}
         <div className="relative w-full lg:w-1/2">
-          <img src={constructionImg} alt="Services" className="w-full rounded-md" />
+          <img src={constructionImg} alt="Services" className="w-full rounded-md"   />
 
           <div className="absolute top-5 left-5 bg-white p-4 rounded-md shadow-lg max-w-[200px]">
             <h4 className="text-lg font-semibold mb-1">General Contracting</h4>

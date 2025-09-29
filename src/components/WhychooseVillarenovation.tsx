@@ -18,7 +18,7 @@ const services = [
     description:
       "Transform your space with precision and style. We specialize in end-to-end villa renovations—from structural modifications to interior enhancements—delivering customized solutions that align with your vision. Whether reimagining layouts, expanding living areas, or modernizing finishes, every project is executed with craftsmanship and attention to detail. Trust a seamless blend of innovation and expertise ...",
     image: villaRenovation2,
-    link: "/services/villa-interior",
+    link: "/services/interior-design",
     reverse: true,
   },
   {
@@ -26,7 +26,7 @@ const services = [
     description:
       "Our holistic design-build approach unifies architecture, structural upgrades, and interior finishes into a seamless process. By aligning functionality with refined aesthetics, we transform villas into cohesive, modern living spaces—delivering precision, efficiency, and enduring quality every step of the way.",
     image:  villaRenovation3,
-    link: "/services/villa-architecture",
+    link: "/services/villa-renovation",
     reverse: false,
   },
   {
@@ -34,7 +34,7 @@ const services = [
     description:
       "Every home and homeowner has distinct needs. Our adaptive planning approach ensures flexible, tailored solutions throughout the renovation process. By listening closely, responding to evolving requirements, and applying innovative design-build strategies, we deliver refined results that align precisely...",
     image:  villaRenovation4,
-    link: "/services/villa-architecture",
+    link: "/services/villa-design",
     reverse: true,
   },
 
@@ -43,7 +43,7 @@ const services = [
     description:
       "Villa renovation goes beyond aesthetics—it’s about redefining space to deliver greater comfort, functionality, and timeless appeal. With precision craftsmanship and a deep understanding of modern living needs, we transform aging villas into refined, efficient homes tailored to ...",
     image:  villaRenovation5,
-    link: "/services/villa-architecture",
+    link: "/services/villa-maintenance",
     reverse: false ,
   },
 ];
@@ -61,10 +61,10 @@ export default function ServicesSection() {
           <img
             src={service.image}
             alt={service.title}
-            className="w-full md:w-1/2 rounded shadow-md object-cover"
+            className="w-full md:w-1/2 rounded shadow-md object-cover"style={{height: '450px'}}
           />
           <div className="md:w-1/2 space-y-4">
-            <h2 className=" font-bold text-gray-900" style={{fontSize: '50px'}}>
+            <h2 className=" font-bold text-gray-900 text-2xl md:text-5xl">
               {service.title}
             </h2>
             <p className="text-gray-700 " style={{fontSize: '20px'}}>{service.description}</p>

@@ -13,8 +13,8 @@ const CTASection = () => {
           Join our team of construction professionals and be part of building the future. 
           We're always looking for talented individuals who share our passion for excellence.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to={'/Contact-us'}><Button variant="hero" size="lg" className="flex items-center gap-2" style={{background: 'transparent', color:'black'}}>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center" style={{alignItems: 'center'}}>
+          <Link to={'/Contact-us'}><Button variant="hero" size="lg" className="flex items-center gap-2" style={{background: 'transparent', color:'black' , }}>
             {/* <Download className="h-5 w-5" /> */}
             Contact Us
           </Button></Link>
