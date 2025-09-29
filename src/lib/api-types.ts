@@ -3,485 +3,6 @@
  * Do not make direct changes to the file.
  */
 
-export interface paths {
-    "/api/auth/csrf_token/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Get CSRF token for frontend */
-        post: operations["api_auth_csrf_token_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/auth/login/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Login with username/password, return session cookie and CSRF token */
-        post: operations["api_auth_login_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/auth/logout/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Logout and invalidate session */
-        post: operations["api_auth_logout_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/auth/me/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Get current user information */
-        get: operations["api_auth_me_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/categories/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_categories_list"];
-        put?: never;
-        post: operations["api_categories_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/categories/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_categories_retrieve"];
-        put: operations["api_categories_update"];
-        post?: never;
-        delete: operations["api_categories_destroy"];
-        options?: never;
-        head?: never;
-        patch: operations["api_categories_partial_update"];
-        trace?: never;
-    };
-    "/api/comments/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_comments_list"];
-        put?: never;
-        post: operations["api_comments_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/comments/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_comments_retrieve"];
-        put: operations["api_comments_update"];
-        post?: never;
-        delete: operations["api_comments_destroy"];
-        options?: never;
-        head?: never;
-        patch: operations["api_comments_partial_update"];
-        trace?: never;
-    };
-    "/api/pages/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_pages_list"];
-        put?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        post: operations["api_pages_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/pages/{slug}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_pages_retrieve"];
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        put: operations["api_pages_update"];
-        post?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        delete: operations["api_pages_destroy"];
-        options?: never;
-        head?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        patch: operations["api_pages_partial_update"];
-        trace?: never;
-    };
-    "/api/pages/{slug}/raw/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_pages_raw_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/posts/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_posts_list"];
-        put?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        post: operations["api_posts_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/posts/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_posts_retrieve"];
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        put: operations["api_posts_update"];
-        post?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        delete: operations["api_posts_destroy"];
-        options?: never;
-        head?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        patch: operations["api_posts_partial_update"];
-        trace?: never;
-    };
-    "/api/v1/auth/csrf_token/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Get CSRF token for frontend */
-        post: operations["api_v1_auth_csrf_token_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/auth/login/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Login with username/password, return session cookie and CSRF token */
-        post: operations["api_v1_auth_login_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/auth/logout/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** @description Logout and invalidate session */
-        post: operations["api_v1_auth_logout_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/auth/me/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Get current user information */
-        get: operations["api_v1_auth_me_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/categories/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_v1_categories_list"];
-        put?: never;
-        post: operations["api_v1_categories_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/categories/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_v1_categories_retrieve"];
-        put: operations["api_v1_categories_update"];
-        post?: never;
-        delete: operations["api_v1_categories_destroy"];
-        options?: never;
-        head?: never;
-        patch: operations["api_v1_categories_partial_update"];
-        trace?: never;
-    };
-    "/api/v1/comments/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_v1_comments_list"];
-        put?: never;
-        post: operations["api_v1_comments_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/comments/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["api_v1_comments_retrieve"];
-        put: operations["api_v1_comments_update"];
-        post?: never;
-        delete: operations["api_v1_comments_destroy"];
-        options?: never;
-        head?: never;
-        patch: operations["api_v1_comments_partial_update"];
-        trace?: never;
-    };
-    "/api/v1/pages/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_v1_pages_list"];
-        put?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        post: operations["api_v1_pages_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/pages/{slug}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_v1_pages_retrieve"];
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        put: operations["api_v1_pages_update"];
-        post?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        delete: operations["api_v1_pages_destroy"];
-        options?: never;
-        head?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        patch: operations["api_v1_pages_partial_update"];
-        trace?: never;
-    };
-    "/api/v1/pages/{slug}/raw/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_v1_pages_raw_retrieve"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/posts/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_v1_posts_list"];
-        put?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        post: operations["api_v1_posts_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/v1/posts/{id}/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        get: operations["api_v1_posts_retrieve"];
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        put: operations["api_v1_posts_update"];
-        post?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        delete: operations["api_v1_posts_destroy"];
-        options?: never;
-        head?: never;
-        /** @description Mixin to add optimistic locking support to ViewSets.
-         *     Requires the model to have a 'version' field. */
-        patch: operations["api_v1_posts_partial_update"];
-        trace?: never;
-    };
-}
-export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         Auth: {
@@ -2183,5 +1704,506 @@ export interface operations {
                 };
             };
         };
+    };
+}
+
+export type BlogListItem = {
+  id: number
+  slug: string
+  title: string
+  excerpt: string
+  cover_image?: string | null
+  published: string
+}
+
+export type BlogDetail = {
+  id: number
+  slug: string
+  title: string
+  body_html: string
+  cover_image?: string | null
+  published: string
+  author?: { name?: string | null } | null
+  tags: string[]
+  seo?: { title?: string | null; description?: string | null; canonical_url?: string | null } | null
+}
+
+export type webhooks = Record<string, never>;
+export interface paths {
+    "/api/auth/csrf_token/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Get CSRF token for frontend */
+        post: operations["api_auth_csrf_token_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/login/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Login with username/password, return session cookie and CSRF token */
+        post: operations["api_auth_login_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/logout/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Logout and invalidate session */
+        post: operations["api_auth_logout_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/me/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Get current user information */
+        get: operations["api_auth_me_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/categories/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_categories_list"];
+        put?: never;
+        post: operations["api_categories_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/categories/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_categories_retrieve"];
+        put: operations["api_categories_update"];
+        post?: never;
+        delete: operations["api_categories_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_categories_partial_update"];
+        trace?: never;
+    };
+    "/api/comments/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_comments_list"];
+        put?: never;
+        post: operations["api_comments_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/comments/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_comments_retrieve"];
+        put: operations["api_comments_update"];
+        post?: never;
+        delete: operations["api_comments_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_comments_partial_update"];
+        trace?: never;
+    };
+    "/api/pages/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_pages_list"];
+        put?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        post: operations["api_pages_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/pages/{slug}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_pages_retrieve"];
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        put: operations["api_pages_update"];
+        post?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        delete: operations["api_pages_destroy"];
+        options?: never;
+        head?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        patch: operations["api_pages_partial_update"];
+        trace?: never;
+    };
+    "/api/pages/{slug}/raw/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_pages_raw_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/posts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_posts_list"];
+        put?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        post: operations["api_posts_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/posts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_posts_retrieve"];
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        put: operations["api_posts_update"];
+        post?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        delete: operations["api_posts_destroy"];
+        options?: never;
+        head?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        patch: operations["api_posts_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/auth/csrf_token/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Get CSRF token for frontend */
+        post: operations["api_v1_auth_csrf_token_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/login/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Login with username/password, return session cookie and CSRF token */
+        post: operations["api_v1_auth_login_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/logout/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Logout and invalidate session */
+        post: operations["api_v1_auth_logout_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/me/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Get current user information */
+        get: operations["api_v1_auth_me_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/categories/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_v1_categories_list"];
+        put?: never;
+        post: operations["api_v1_categories_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/categories/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_v1_categories_retrieve"];
+        put: operations["api_v1_categories_update"];
+        post?: never;
+        delete: operations["api_v1_categories_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_v1_categories_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/comments/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_v1_comments_list"];
+        put?: never;
+        post: operations["api_v1_comments_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/comments/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["api_v1_comments_retrieve"];
+        put: operations["api_v1_comments_update"];
+        post?: never;
+        delete: operations["api_v1_comments_destroy"];
+        options?: never;
+        head?: never;
+        patch: operations["api_v1_comments_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/pages/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_v1_pages_list"];
+        put?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        post: operations["api_v1_pages_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/pages/{slug}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_v1_pages_retrieve"];
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        put: operations["api_v1_pages_update"];
+        post?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        delete: operations["api_v1_pages_destroy"];
+        options?: never;
+        head?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        patch: operations["api_v1_pages_partial_update"];
+        trace?: never;
+    };
+    "/api/v1/pages/{slug}/raw/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_v1_pages_raw_retrieve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/posts/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_v1_posts_list"];
+        put?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        post: operations["api_v1_posts_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/posts/{id}/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        get: operations["api_v1_posts_retrieve"];
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        put: operations["api_v1_posts_update"];
+        post?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        delete: operations["api_v1_posts_destroy"];
+        options?: never;
+        head?: never;
+        /** @description Mixin to add optimistic locking support to ViewSets.
+         *     Requires the model to have a 'version' field. */
+        patch: operations["api_v1_posts_partial_update"];
+        trace?: never;
     };
 }
