@@ -9,7 +9,7 @@ import FeaturedWorkSection from "@/components/FeaturedWorkSection";
 import MeasureUpSection from "@/components/MeasureUpSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-import Bannertool01 from '@/assets/banner-tool01.png'
+import Bannertool01 from '@/assets/banner-tool01.webp'
 const Index = () => {
   return (
     <div className="min-h-screen">

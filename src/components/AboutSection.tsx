@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaHardHat, FaSmile, FaCog, FaUsers } from 'react-icons/fa';
-import Engineerimage from '../assets/engineer.png';
-import OngoingConstruction from '../assets/OngoingConstruction.png';
+import Engineerimage from '../assets/Engineerimage.webp';
+import OngoingConstruction from '../assets/OngoingConstruction.webp';
 const AboutSection = () => {
   return (
     <section className="py-16 px-6 md:px-20 bg-white">
@@ -16,13 +16,13 @@ const AboutSection = () => {
           <img
             src={Engineerimage}
             alt="Engineer with site"
-            className="w-full rounded-lg shadow"
+            className="w-full rounded-lg shadow" style={{height: '478px', objectFit: 'cover'}}
           />
         </div>
 
         {/* Right Column */}
         <div className="md:w-1/2 space-y-4">
-          <p className="text-blue-900 font-bold " style={{fontSize: '1.8rem'}}>
+          <p className="text-blue-900 font-bold " style={{fontSize: '24px'}}>
             We’re Problem-Solvers With Focus. Project Managers With Purpose. Team Players With One
             Goal In Mind: To Deliver Your Project On Time, On Budget, And On Vision.
           </p>
@@ -38,7 +38,7 @@ const AboutSection = () => {
             <img
               src={OngoingConstruction}
               alt="Ongoing construction"
-              className="w-full rounded-lg shadow"
+              className="w-full rounded-lg shadow" style={{height: '417px', objectFit: 'cover'}}
             />
           </div>
         </div>

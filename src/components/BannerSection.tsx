@@ -7,12 +7,12 @@ const BannerSection = ({
   overlayOpacity = 50 
 }) => {
   return (
-    <section className="relative py-60" >
+    <section className="relative py-36" >
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImage})` }} 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+        style={{ backgroundImage: `url(${backgroundImage})`,height: '520px' }} 
       >
-        <div className={`absolute inset-0 bg-black/${overlayOpacity}`} style={{background:'#00000033'}}></div>
+        <div className={`absolute inset-0 bg-black/${overlayOpacity}`} ></div>
       </div>
       
       <div className="relative z-10 container mx-auto px-4 text-center"   >

@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import HeaderNew from '../components/Header2'
-import VillamaintenanceHero from '../assets/villa-maintaince-hero.png'
+import VillamaintenanceHero from '../assets/villa-maintaince-hero.webp'
 import ImageSlider from "../components/VillaCarousel";
-import maintainance1 from "../assets/maintaince-1.png";
-import Interiordesign2  from "../assets/maintaince-1.png";
+import maintainance1 from "../assets/Expert Water Tank Cleaning & Disinfection.webp";
+import Interiordesign2  from "../assets/General Cleaning.webp";
+import Interiordesign5  from "../assets/Rapid Response Plumbing.webp";
+import Interiordesign3  from "../assets/For expert AC service.webp";
+import Interiordesign4  from "../assets/Your Go-To Fix-It Service.webp";
 import  WhyChooseMaintaince from '../components/WhyChooseMaintaince'
 import ReCAPTCHA from 'react-google-recaptcha';
 import Footer from '@/components/Footer';
@@ -13,7 +16,7 @@ import Footer from '@/components/Footer';
 
 
 const villaSlides = [
-  {
+   {
     id: 1,
     image: maintainance1,
     title: "Expert Water Tank Cleaning & Disinfection",
@@ -25,25 +28,26 @@ const villaSlides = [
     image: Interiordesign2,
     title: "General Cleaning:",
     desc:
-      "Experience the peace of mind that comes with our trusted cleaning service. We treat your home with exceptional care to deliver a beautiful, lasting clean you'll love",
+    "Experience the peace of mind that comes with our trusted cleaning service. We treat your home with exceptional care to deliver a beautiful, lasting clean you'll love",
   },
   {
     id: 3,
-    image: Interiordesign2,
+    image: Interiordesign3,
     title: "For expert A/C service",
     desc:
-      "contact us today. If your system is failing to cool, the thermostat is malfunctioning, or the fan is operating loudly, we can diagnose and resolve the issue promptly.",
+    "contact us today. If your system is failing to cool, the thermostat is malfunctioning, or the fan is operating loudly, we can diagnose and resolve the issue promptly.",
   },
+ 
   {
     id: 4,
-    image: Interiordesign2,
+    image: Interiordesign5,
     title: "Rapid Response Plumbing ",
     desc:
       "Experiencing a blocked toilet, water tank leakage, or a burst pipe? Our team is equipped to handle your plumbing emergencies promptly and efficiently.",
   },
   {
     id: 5,
-    image: Interiordesign2,
+    image: Interiordesign4,
     title: "Your Go-To Fix-It Service",
     desc:
       "That loose door hinge, that shelf you need mounted, those broken handles consider them done. We handle the hard work, so you can enjoy your home",
@@ -67,23 +71,26 @@ const VillaMaintenance = () => {
   return (
     <>
    <div
-      className="bg-cover bg-center min-h-screen"
-      style={{ backgroundImage: `url(${VillamaintenanceHero})` }}
-    > 
+  className="bg-cover bg-center"
+  style={{ backgroundImage: `url(${VillamaintenanceHero})`, height: '700px' }}
+> 
+  <HeaderNew />
 
-      <HeaderNew />
-
-      <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
-        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
-          <h1 className="text-3xl font-bold mb-4 leading-snug">
-         Villa Maintenance
-          </h1>
-          <p className="text-sm mb-6">
+  <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
+    {/* Alignment wrapper same as Navbar */}
+    <div className="w-[90%] max-w-[1200px] mx-auto flex justify-end">
+      <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+        <h1 className="text-3xl font-bold mb-4 leading-snug">
+          Villa Maintenance
+        </h1>
+        <p className="text-sm mb-6">
           We never compromise with the quality of building materials.
-          </p>
-        </div>
+        </p>
       </div>
-      </div>
+    </div>
+  </div>
+</div>
+
 
             <ImageSlider slides={villaSlides} />
             <WhyChooseMaintaince/>

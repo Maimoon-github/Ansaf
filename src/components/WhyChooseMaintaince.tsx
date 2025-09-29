@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import villamaintaince01 from '../assets/maintaincechoose01.png';
-import villamaintaince02 from '../assets/maintaincechoose02.png';
-import villamaintaince03 from '../assets/maintaincechoose03.png';
+import villamaintaince01 from '../assets/maintaincechoose01.webp';
+import villamaintaince02 from '../assets/maintaincechoose02.webp';
+import villamaintaince03 from '../assets/maintaincechoose03.webp';
 import villamaintaince04 from '../assets/maintaincechoose04.png';
 import maintaincechoose05 from '../assets/maintaincechoose05.png';
 import maintaincechoose06 from '../assets/maintaincechoose06.png';
@@ -38,7 +38,7 @@ const services = [
       </div>
     ),
     image: villamaintaince01,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: true,
   },
   {
@@ -58,7 +58,7 @@ const services = [
 </div>
     ),
     image:  villamaintaince03,
-    link: "/services/villa-architecture",
+    link: "/services",
     reverse: false,
   },
   {
@@ -77,7 +77,7 @@ const services = [
     </div>
     ),
     image:  villamaintaince04,
-    link: "/services/villa-architecture",
+    link: "/services",
     reverse: true,
   },
 
@@ -95,7 +95,7 @@ const services = [
         </div>
     ),
     image:  maintaincechoose05,
-    link: "/services/villa-architecture",
+    link: "/services",
     reverse: false ,
   },
   {
@@ -107,7 +107,7 @@ const services = [
         </div>
     ),
     image:  maintaincechoose06,
-    link: "/services/villa-architecture",
+    link: "/services",
     reverse: true ,
   },
    {
@@ -126,7 +126,7 @@ Our Comprehensive Painting Solutions:
         </div>
     ),
     image:  maintaincechoose07,
-    link: "/services/villa-architecture",
+    link: "/services",
     reverse: false ,
   },
 ];
@@ -144,10 +144,10 @@ export default function ServicesSection() {
           <img
             src={service.image}
             alt={service.title}
-            className="w-full md:w-1/2 rounded shadow-md object-cover"
+            className="w-full md:w-1/2 rounded shadow-md object-cover"style={{height: '450px'}}
           />
           <div className="md:w-1/2 space-y-4">
-            <h2 className=" font-bold text-gray-900" style={{fontSize: '50px'}}>
+            <h2 className=" font-bold text-gray-900 text-2xl md:text-5xl">
               {service.title}
             </h2>
             <p className="text-gray-700 " style={{fontSize: '20px'}}>{service.description}</p>

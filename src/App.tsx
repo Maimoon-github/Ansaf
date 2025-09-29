@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {useRoutes ,  useLocation } from 'react-router-dom';
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { WebSocketProvider } from "@/components/WebSocketProvider";
 
 // import pages
 import Services from './pages/Services'
@@ -18,56 +17,51 @@ import InteriorDesign from './pages/InteriorDesign'
 import VillaRenovation from './pages/VillaRenovation';
 import VillaMaintenance from './pages/VillaMaintenance'
 import Fitout from './pages/Fitout'
-import ContactUs from './pages/Contact'
-import Blog from './pages/Blog'
-import BlogDetail from './pages/BlogDetail'
-import Pages from './pages/Pages'
-import PageDetail from './pages/PageDetail'
-
+import ContactUs from './pages/Contact' 
+import BlogDetailed from './pages/BlogDetailed'
+import Blogs from './pages/Blogs'
 const queryClient = new QueryClient();
 
  const ScrollToTop = () => {
     const { pathname } = useLocation();
-
+  
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
-
+  
     return null;
   };
 
 const App = () => (
 
 
-
+  
   <QueryClientProvider client={queryClient}>
-    <WebSocketProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-       <ScrollToTop />
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+     <ScrollToTop />
 
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/villa-construction" element={<VillaConstruction/>} />
-            <Route path="/services/villa-design" element={<VillaDesign/>} />
-            <Route path="/services/interior-design" element={<InteriorDesign/>} />
-            <Route path="/services/villa-renovation" element={<VillaRenovation/>} />
-            <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
-            <Route path="/services/fitout" element={<Fitout/>} />
-            <Route path="/Contact-us" element={<ContactUs/>} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/pages" element={<Pages />} />
-            <Route path="/page/:slug" element={<PageDetail />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </WebSocketProvider>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/About" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/villa-construction" element={<VillaConstruction/>} />
+          <Route path="/services/villa-design" element={<VillaDesign/>} />
+          <Route path="/services/interior-design" element={<InteriorDesign/>} />
+          <Route path="/services/villa-renovation" element={<VillaRenovation/>} />
+          <Route path="/services/villa-maintenance" element={<VillaMaintenance/>} />
+          <Route path="/services/fitout" element={<Fitout/>} />
+          <Route path="/Contact-us" element={<ContactUs/>} />
+          <Route path="/blogs" element={<Blogs/>} />
+          <Route path="/blogs/:id" element={<BlogDetailed />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
-);export default App;
+);
+
+export default App;

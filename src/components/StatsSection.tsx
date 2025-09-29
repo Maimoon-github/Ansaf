@@ -3,15 +3,15 @@ import { Building, Users, Award, Clock } from "lucide-react";
 
 const StatsSection = () => {
   const stats = [
-    { icon: Building, number: 750, suffix: "+", label: "Projects Completed" },
-    { icon: Users, number: 999, suffix: "+", label: "Happy Clients" },
+    { icon: Building, number: 50, suffix: "+", label: "Projects Completed" },
+    { icon: Users, number: 90, suffix: "+", label: "Happy Clients" },
     { icon: Clock, number: 15, suffix: "+", label: "Years Experience" },
     { icon: Award, number: 50, suffix: "+", label: "Team Members" },
   ];
 
   const [counts, setCounts] = useState(stats.map(() => 0));
   const sectionRef = useRef(null);
-
+  
   const startCounting = () => {
     stats.forEach((stat, i) => {
       let start = 0;

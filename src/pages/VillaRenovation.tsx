@@ -1,33 +1,38 @@
 import HeaderNew from "@/components/Header2";
-import VillaRenovationHero from '../assets/villa-renovation-hero.png'
+import VillaRenovationHero from '../assets/villa-renovation-hero.webp'
 import VillaRenovationCard from "@/components/VillaRenovationslider";
 import WhyChoosVillarenovation from '@/components/WhychooseVillarenovation';
 import VillaRenovationSection from '@/components/villaRenovationparas';
 import Footer from "@/components/Footer";
+import { Link } from 'react-router-dom'
 const VillaRenovation = () => {
   return (
     <>
-   <div
-      className="bg-cover bg-center min-h-screen"
-      style={{ backgroundImage: `url(${VillaRenovationHero})` }}
-    > 
+  <div
+  className="bg-cover bg-center"
+  style={{ backgroundImage: `url(${VillaRenovationHero})`,height:'700px' }}
+> 
+  <HeaderNew />
 
-      <HeaderNew />
-
-      <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
-        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
-          <h1 className="text-3xl font-bold mb-4 leading-snug">
+  <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
+    {/* Alignment wrapper same as Navbar */}
+    <div className="w-[90%] max-w-[1200px] mx-auto flex justify-end">
+      <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+        <h1 className="text-3xl font-bold mb-4 leading-snug">
           Villa Renovation
-          </h1>
-          <p className="text-sm mb-6">
+        </h1>
+        <p className="text-sm mb-6">
           We never compromise with the quality of building materials.
-          </p>
-           <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
-              BOOK AN APPOINMENT
-            </button>
-        </div>
+        </p>
+        <Link to={"https://calendly.com/ansafcont-building-contracting/30min"}>
+                               <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
+                                 BOOK AN APPOINTMENT
+                               </button>
+                             </Link>
       </div>
-      </div>
+    </div>
+  </div>
+</div>
 
 
       <VillaRenovationCard/>

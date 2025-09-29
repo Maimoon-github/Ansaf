@@ -4,7 +4,7 @@ import Fitout02 from '../assets/Fitout02.png';
 import Fitout03 from '../assets/Fitout03.png';
 import Fitout04 from '../assets/Fitout04.png';
 import Fitout05 from '../assets/Fitout05.png';
-import Fitout06 from '../assets/Fitout06.png';
+import Fitout06 from '../assets/Fitout06.webp';
 
 
 const services = [
@@ -28,7 +28,7 @@ const services = [
       </div>
     ),
     image: Fitout03,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: true,
   },
   {
@@ -39,7 +39,7 @@ const services = [
       </div>
     ),
     image: Fitout02,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: false,
   },
   {
@@ -50,7 +50,7 @@ const services = [
 </div>
     ),
     image:  Fitout04,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: true,
   },
   {
@@ -61,7 +61,7 @@ const services = [
     </div>
     ),
     image:  Fitout05,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: false,
   },
 
@@ -73,7 +73,7 @@ const services = [
         </div>
     ),
     image:  Fitout06,
-    link: "/services/villa-interior",
+    link: "/services",
     reverse: true ,
   },
 
@@ -92,10 +92,10 @@ export default function ServicesSection() {
           <img
             src={service.image}
             alt={service.title}
-            className="w-full md:w-1/2 rounded shadow-md object-cover"
+            className="w-full md:w-1/2 rounded shadow-md object-cover" style={{height: '450px'}}
           />
           <div className="md:w-1/2 space-y-4">
-            <h2 className=" font-bold text-gray-900" style={{fontSize: '50px'}}>
+            <h2 className=" font-bold text-gray-900 text-2xl md:text-5xl">
               {service.title}
             </h2>
             <p className="text-gray-700 " style={{fontSize: '20px'}}>{service.description}</p>

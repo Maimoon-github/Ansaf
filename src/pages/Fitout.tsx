@@ -1,11 +1,14 @@
 import HeaderNew from '../components/Header2'
-import Fitouthero from '../assets/fitout-hero.png'
+import Fitouthero from '../assets/fitout-hero.webp'
 import ImageSlider from "../components/VillaCarousel";
 import Fitoutbanner01 from "../assets/fitout-banner01.png";
+import Fitoutbanner02 from "../assets/fitoutslider1.jpg";
+import Fitoutbanner03 from "../assets/office-fitout-ideas.jpg";
 import WhyChooseFitout from '../components/WhyChooseFitout'
 import ReCAPTCHA from 'react-google-recaptcha';
 import React, { useRef } from 'react';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 
 const villaSlides = [
   {
@@ -17,14 +20,14 @@ const villaSlides = [
   },
   {
     id: 2,
-    image: Fitoutbanner01,
+    image: Fitoutbanner02,
     title: "Best Furniture and Decor",
     desc:
       "Discover the pinnacle of furniture and decor excellence with FitOutPro. Elevate your space with our curated selection of the finest furnishings."
      },
   {
     id: 3,
-    image: Fitoutbanner01,
+    image: Fitoutbanner03,
     title: "New Level of Fitouts",
     desc:
       "Elevate your space with FitOutPro's custom interior solutions. Experience a new level of design excellence and personalized service."
@@ -46,27 +49,32 @@ const Fitout = () => {
       };
 return (
     <>
-   <div
-      className="bg-cover bg-center min-h-screen"
-      style={{ backgroundImage: `url(${Fitouthero})` }}
-    > 
+  <div
+  className="bg-cover bg-center"
+  style={{ backgroundImage: `url(${Fitouthero})`, height: '700px' }}
+> 
+  <HeaderNew />
 
-      <HeaderNew />
+  <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
+    {/* Alignment wrapper same as Navbar */}
+    <div className="w-[90%] max-w-[1200px] mx-auto flex justify-end">
+      <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+        <h1 className="text-3xl font-bold mb-4 leading-snug">
+          Services
+        </h1>
+        <p className="text-sm mb-6">
+          We never compromise with the quality of building materials.
+        </p>
+        <Link to={"https://calendly.com/ansafcont-building-contracting/30min"}>
+                                      <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
+                                        BOOK AN APPOINTMENT
+                                      </button>
+                                    </Link>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
-        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
-          <h1 className="text-3xl font-bold mb-4 leading-snug">
-         Services
-          </h1>
-          <p className="text-sm mb-6">
-         We never compromise with the quality of building materials.
-          </p>
-           <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
-              BOOK AN APPOINMENT
-            </button>
-        </div>
-      </div>
-      </div>
 
        <ImageSlider slides={villaSlides} />
        <WhyChooseFitout/>

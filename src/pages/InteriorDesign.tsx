@@ -1,27 +1,28 @@
 import HeaderNew from '@/components/Header2';
-import Interiorbgimage from '../assets/interiordesign.png'
+import Interiorbgimage from '../assets/interiordesign.webp'
 // import ImageSlider from "./ImageSlider";
 import ImageSlider from "../components/VillaCarousel";
-import Interiordesign1 from "../assets/interiosdesignslider1.png";
-import Interiordesign2  from "../assets/interiosdesignslider1.png";
+import Interiordesign1 from "../assets/interiosdesignslider1.webp";
+import Interiordesign2  from "../assets/interiordesignslider02.jpg";
 import InteriorDesign from '../components/whyinteriordesign'
 import roofImage from '../assets/interior-roof.png'
 import interiorImage from '../assets/iNteriorlast.png'
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 const villaSlides = [
   {
     id: 1,
     image: Interiordesign1,
-    title: "VILLA RENOVATION",
+    title: "INTERIOR DESIGN",
     desc:
-      "Villa renovation is more than just updating a space—it’s about reimagining your home to enhance comfort, functionality, and style. At ANSAF Villas, we specialize in transforming outdated villas ...",
+      "Interior design is the art and science of enhancing interior spaces to achieve a healthier and more aesthetically pleasing environment. It combines creativity, functionality, and personal expression to transform ....",
   },
   {
     id: 2,
     image: Interiordesign2,
-    title: "MODERN MAKEOVER",
+    title: "Modern Living Spaces",
     desc:
-      "Transform your villa with a modern aesthetic, clean lines, and updated interiors. Experience style with substance at ANSAF Villas.",
+      "Experience interiors that blend elegance with practicality. Our designs bring harmony, comfort, and style to every corner, creating spaces you’ll truly love to live in.",
   },
 ];
 
@@ -33,26 +34,32 @@ const InteriosDesign = () => {
 
   return (
     <>
-   <div
-      className="bg-cover bg-center min-h-screen"
-      style={{ backgroundImage: `url(${Interiorbgimage})` }}
-    > 
-      <HeaderNew />
+  <div
+  className="bg-cover bg-center"
+  style={{ backgroundImage: `url(${Interiorbgimage})`, height:'700px' }}
+> 
+  <HeaderNew />
 
-      <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
-        <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
-          <h1 className="text-3xl font-bold mb-4 leading-snug">
+  <div className="w-full flex justify-center items-center h-[calc(100vh-100px)] px-6">
+    {/* Alignment wrapper same as Navbar */}
+    <div className="w-[90%] max-w-[1200px] mx-auto flex justify-end">
+      <div className="bg-gray-900 bg-opacity-60 text-white max-w-md p-6 rounded-xl mt-10 animate-fadeInUp">
+        <h1 className="text-3xl font-bold mb-4 leading-snug">
           Interior Design
-          </h1>
-          <p className="text-sm mb-6">
-          we set ourselves apart in the UAE's interior design landscape through our unwavering commitment to captivating interior decoration.
-          </p>
-           <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-600 text-sm font-semibold">
-              BOOK AN APPOINMENT
-            </button>
-        </div>
+        </h1>
+        <p className="text-sm mb-6">
+          We set ourselves apart in the UAE's interior design landscape through our unwavering commitment to captivating interior decoration.
+        </p>
+        <Link to={"https://calendly.com/ansafcont-building-contracting/30min"}>
+                        <button className="bg-white text-black px-5 py-2 rounded hover:bg-orange-300 text-sm font-semibold">
+                          BOOK AN APPOINTMENT
+                        </button>
+                      </Link>
       </div>
-      </div>
+    </div>
+  </div>
+</div>
+
       <ImageSlider slides={villaSlides} />
 
 <InteriorDesign/>   
