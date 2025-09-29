@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
-interface WebSocketMessage {
+export interface WebSocketMessage {
   type: string;
-  resource: string;
-  id: string | number;
-  payload?: any;
+  resource?: string;
+  id?: string | number;
+  payload?: unknown;
   timestamp?: string;
 }
 
@@ -29,35 +29,45 @@ export function useWebSocket({
   const [isConnected, setIsConnected] = useState(false);
   const [lastMessage, setLastMessage] = useState<WebSocketMessage | null>(null);
   const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectTimeoutRef = useRef<number | null>(null);
   const reconnectAttempts = useRef(0);
   const maxReconnectAttempts = 5;
   const reconnectDelay = 1000; // Start with 1 second
 
-  const connect = () => {
+  const connect = useCallback(() => {
     if (!enabled || wsRef.current?.readyState === WebSocket.OPEN) return;
 
     try {
       wsRef.current = new WebSocket(url);
 
       wsRef.current.onopen = () => {
+        // eslint-disable-next-line no-console
         console.log('WebSocket connected');
         setIsConnected(true);
         reconnectAttempts.current = 0;
         onOpen?.();
       };
 
-      wsRef.current.onmessage = (event) => {
+      wsRef.current.onmessage = (event: MessageEvent) => {
         try {
-          const message: WebSocketMessage = JSON.parse(event.data);
-          setLastMessage(message);
-          onMessage?.(message);
+          const parsed = JSON.parse(event.data as string) as unknown;
+          // Basic runtime check
+          if (parsed && typeof parsed === 'object' && 'type' in (parsed as Record<string, unknown>)) {
+            const message = parsed as WebSocketMessage;
+            setLastMessage(message);
+            onMessage?.(message);
+          } else {
+            // Unknown message shape — store as payload wrapper
+            setLastMessage({ type: 'message', payload: parsed });
+          }
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.error('Failed to parse WebSocket message:', error);
         }
       };
 
       wsRef.current.onclose = () => {
+        // eslint-disable-next-line no-console
         console.log('WebSocket disconnected');
         setIsConnected(false);
         onClose?.();
@@ -66,25 +76,28 @@ export function useWebSocket({
         if (enabled && reconnectAttempts.current < maxReconnectAttempts) {
           reconnectAttempts.current++;
           const delay = reconnectDelay * Math.pow(2, reconnectAttempts.current - 1); // Exponential backoff
+          // eslint-disable-next-line no-console
           console.log(`Attempting to reconnect in ${delay}ms (attempt ${reconnectAttempts.current}/${maxReconnectAttempts})`);
 
-          reconnectTimeoutRef.current = setTimeout(() => {
+          reconnectTimeoutRef.current = window.setTimeout(() => {
             connect();
           }, delay);
         }
       };
 
       wsRef.current.onerror = (error) => {
+        // eslint-disable-next-line no-console
         console.error('WebSocket error:', error);
         onError?.(error);
       };
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Failed to create WebSocket connection:', error);
       onError?.(error as Event);
     }
-  };
+  }, [enabled, url, onOpen, onClose, onError, onMessage]);
 
-  const disconnect = () => {
+  const disconnect = useCallback(() => {
     if (reconnectTimeoutRef.current) {
       clearTimeout(reconnectTimeoutRef.current);
       reconnectTimeoutRef.current = null;
@@ -96,15 +109,16 @@ export function useWebSocket({
     }
 
     setIsConnected(false);
-  };
+  }, []);
 
-  const sendMessage = (message: any) => {
+  const sendMessage = useCallback((message: unknown) => {
     if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify(message));
     } else {
+      // eslint-disable-next-line no-console
       console.warn('WebSocket is not connected. Message not sent:', message);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (enabled) {
@@ -116,7 +130,7 @@ export function useWebSocket({
     return () => {
       disconnect();
     };
-  }, [enabled, url]);
+  }, [enabled, url, connect, disconnect]);
 
   return {
     isConnected,

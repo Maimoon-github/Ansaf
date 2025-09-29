@@ -278,7 +278,7 @@ export const getCsrfToken = async (): Promise<string> => {
 
 // axios request interceptor: make sure non-GET requests include CSRF
 apiClient.interceptors.request.use(
-  async (config: InternalAxiosRequestConfig<any>) => {
+  async (config: InternalAxiosRequestConfig<unknown>) => {
     const method = config?.method?.toLowerCase?.() ?? '';
     if (method && !['get', 'head', 'options'].includes(method)) {
       if (!csrfToken) {
@@ -292,7 +292,7 @@ apiClient.interceptors.request.use(
       config.headers = (config.headers ?? {}) as AxiosRequestHeaders;
       // set header if we have token
       if (csrfToken) {
-        (config.headers as any)['X-CSRFToken'] = csrfToken;
+        (config.headers as AxiosRequestHeaders)['X-CSRFToken'] = csrfToken;
       }
     }
     return config;
@@ -338,13 +338,13 @@ async function getJSON<T>(path: string): Promise<T> {
 
       try {
         return (await res.json()) as T;
-      } catch (err: any) {
-        errors.push({ url, reason: `Invalid JSON: ${err?.message ?? String(err)}` });
+      } catch (err: unknown) {
+        errors.push({ url, reason: `Invalid JSON: ${String((err as { message?: string })?.message ?? err)}` });
         continue;
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       // network-level failure (DNS, connection refused, CORS blocked preflight)
-      errors.push({ url, reason: `Network error: ${err?.message ?? String(err)}` });
+      errors.push({ url, reason: `Network error: ${String((err as { message?: string })?.message ?? err)}` });
       continue;
     }
   }
@@ -361,14 +361,48 @@ export const Api = {
   // listBlogs kept to call backend '/posts/' list view (uses fetch)
   listBlogs: async (q?: string) => {
     const qs = q ? `?search=${encodeURIComponent(q)}` : '';
-    return getJSON<{ results?: any[] } | any[]>(`/posts/${qs}`);
+
+    // Some deployments expose posts at slightly different paths (/posts/, /blogs/posts/,
+    // versioned /v1/...). Try a short list of likely variants and return the first
+    // successful JSON response. This makes the frontend resilient to small API path
+    // differences between environments (dev proxy vs direct backend).
+    const candidatePaths = [
+      `/posts/${qs}`,
+      `/blogs/posts/${qs}`,
+      `/v1/posts/${qs}`,
+      `/v1/blogs/posts/${qs}`,
+      `/posts/${qs}`,
+    ];
+
+    const errors: string[] = [];
+    for (const p of candidatePaths) {
+      try {
+        // getJSON will try configured bases (env/proxy/fallbacks)
+        const data = await getJSON<{ results?: unknown[] } | unknown[]>(p);
+        console.debug(
+          'Api.listBlogs: successful path',
+          p,
+          data && (Array.isArray(data) ? data.length : (data as { results?: unknown[] }).results?.length)
+        );
+        return data;
+      } catch (err: unknown) {
+        errors.push(`${p}: ${String((err as { message?: string })?.message ?? err)}`);
+        // try next candidate
+        continue;
+      }
+    }
+
+    // If we reached here, no candidate returned successfully. Surface a combined error
+    const msg = `Api.listBlogs: all candidate endpoints failed. Attempts:\n${errors.join('\n')}`;
+    console.error(msg);
+    throw new Error(msg);
   },
   getBlog: async (slug: string) => getJSON(`/blogs/${encodeURIComponent(slug)}/`),
 
   // add a small patch helper that uses axios to ensure CSRF and cookies are applied
-  patchPost: async (slugOrId: string | number, data: any, version?: number) => {
+  patchPost: async (slugOrId: string | number, data: Record<string, unknown>, version?: number) => {
     // use a flexible type for headers so it is compatible with axios typings
-    const headers: any = {};
+    const headers: Record<string, string> = {};
     if (typeof version !== 'undefined' && version !== null) {
       // backend optimistic lock often expects If-Match header with version
       headers['If-Match'] = String(version);
@@ -376,21 +410,21 @@ export const Api = {
     try {
       const res = await apiClient.patch(`/posts/${encodeURIComponent(String(slugOrId))}/`, data, { headers });
       return res.data;
-    } catch (err: any) {
+    } catch (err: unknown) {
       // Re-throw a helpful message
-      throw new Error(err?.message ?? 'Failed to patch post');
+      throw new Error(String((err as { message?: string })?.message ?? 'Failed to patch post'));
     }
   },
 
   // convenience put helper (same considerations)
-  putPost: async (slugOrId: string | number, data: any, version?: number) => {
-    const headers: any = {};
+  putPost: async (slugOrId: string | number, data: Record<string, unknown>, version?: number) => {
+    const headers: Record<string, string> = {};
     if (typeof version !== 'undefined' && version !== null) headers['If-Match'] = String(version);
     try {
       const res = await apiClient.put(`/posts/${encodeURIComponent(String(slugOrId))}/`, data, { headers });
       return res.data;
-    } catch (err: any) {
-      throw new Error(err?.message ?? 'Failed to update post');
+    } catch (err: unknown) {
+      throw new Error(String((err as { message?: string })?.message ?? 'Failed to update post'));
     }
   },
 };
@@ -404,33 +438,33 @@ export const api = {
     csrfToken: () => apiClient.get('/auth/csrf_token/'),
   },
   blogs: {
-    list: (params?: any) => apiClient.get('/posts/', { params }),
-    create: (data: any) => apiClient.post('/posts/', data),
+    list: (params?: Record<string, unknown>) => apiClient.get('/posts/', { params }),
+    create: (data: Record<string, unknown>) => apiClient.post('/posts/', data),
     retrieve: (slug: string) => apiClient.get(`/posts/${slug}/`),
-    update: (slug: string, data: any, version?: number) => {
-      const headers: any = {};
+    update: (slug: string, data: Record<string, unknown>, version?: number) => {
+      const headers: Record<string, string> = {};
       if (version) headers['If-Match'] = version.toString();
       return apiClient.put(`/posts/${slug}/`, data, { headers });
     },
-    partialUpdate: (slug: string, data: any, version?: number) => {
-      const headers: any = {};
+    partialUpdate: (slug: string, data: Record<string, unknown>, version?: number) => {
+      const headers: Record<string, string> = {};
       if (version) headers['If-Match'] = version.toString();
       return apiClient.patch(`/posts/${slug}/`, data, { headers });
     },
     delete: (slug: string) => apiClient.delete(`/posts/${slug}/`),
   },
   pages: {
-    list: (params?: any) => apiClient.get('/pages/', { params }),
+    list: (params?: Record<string, unknown>) => apiClient.get('/pages/', { params }),
     myPages: () => apiClient.get('/pages/my_pages/'),
-    create: (data: any) => apiClient.post('/pages/', data),
+    create: (data: Record<string, unknown>) => apiClient.post('/pages/', data),
     retrieve: (slug: string) => apiClient.get(`/pages/${slug}/`),
-    update: (slug: string, data: any, version?: number) => {
-      const headers: any = {};
+    update: (slug: string, data: Record<string, unknown>, version?: number) => {
+      const headers: Record<string, string> = {};
       if (version) headers['If-Match'] = version.toString();
       return apiClient.put(`/pages/${slug}/`, data, { headers });
     },
-    partialUpdate: (slug: string, data: any, version?: number) => {
-      const headers: any = {};
+    partialUpdate: (slug: string, data: Record<string, unknown>, version?: number) => {
+      const headers: Record<string, string> = {};
       if (version) headers['If-Match'] = version.toString();
       return apiClient.patch(`/pages/${slug}/`, data, { headers });
     },

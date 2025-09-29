@@ -1,12 +1,12 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { useBlogWebSocket, usePageWebSocket } from '@/hooks/websocket';
+import { useBlogWebSocket, usePageWebSocket, WebSocketMessage } from '@/hooks/websocket';
 
 interface WebSocketContextType {
   isBlogConnected: boolean;
   isPageConnected: boolean;
-  lastBlogMessage: any;
-  lastPageMessage: any;
+  lastBlogMessage: WebSocketMessage | null;
+  lastPageMessage: WebSocketMessage | null;
 }
 
 const WebSocketContext = createContext<WebSocketContextType | undefined>(undefined);

@@ -38,11 +38,11 @@ export const queryKeys = {
     me: ['auth', 'me'] as const,
   },
   blogs: {
-    list: (params?: any) => ['blogs', 'list', params] as const,
+    list: (params?: Record<string, unknown>) => ['blogs', 'list', params] as const,
     detail: (slug: string) => ['blogs', 'detail', slug] as const,
   },
   pages: {
-    list: (params?: any) => ['pages', 'list', params] as const,
+    list: (params?: Record<string, unknown>) => ['pages', 'list', params] as const,
     detail: (slug: string) => ['pages', 'detail', slug] as const,
     myPages: () => ['pages', 'myPages'] as const,
   },
@@ -91,7 +91,7 @@ export const useLogout = () => {
 };
 
 // Blog hooks
-export const useBlogs = (params?: any) => {
+export const useBlogs = (params?: Record<string, unknown>) => {
   console.log('useBlogs called with params:', params);
   return useQuery<PaginatedResponse<Post>>({
     queryKey: queryKeys.blogs.list(params),
@@ -146,10 +146,13 @@ export const useUpdateBlog = () => {
       // Invalidate list to ensure consistency
       queryClient.invalidateQueries({ queryKey: ['blogs', 'list'] });
     },
-    onError: (error: any) => {
-      if (error.response?.status === 409) {
+    onError: (error: unknown) => {
+      // Narrow common axios-like error shapes if possible
+      const err = error as { response?: { status?: number; data?: unknown } };
+      if (err?.response?.status === 409) {
         // Handle version conflict
-        console.error('Version conflict:', error.response.data);
+        // eslint-disable-next-line no-console
+        console.error('Version conflict:', err.response.data);
       }
     },
   });
@@ -170,7 +173,7 @@ export const useDeleteBlog = () => {
 };
 
 // Page hooks (similar to blog hooks)
-export const usePages = (params?: any) => {
+export const usePages = (params?: Record<string, unknown>) => {
   return useQuery({
     queryKey: queryKeys.pages.list(params),
     queryFn: async () => {
@@ -208,7 +211,7 @@ export const useUpdatePage = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ slug, data, version }: { slug: string; data: any; version?: number }) => {
+    mutationFn: async ({ slug, data, version }: { slug: string; data: Record<string, unknown>; version?: number }) => {
       const response = await api.pages.update(slug, data, version);
       return response.data;
     },
@@ -216,9 +219,11 @@ export const useUpdatePage = () => {
       queryClient.setQueryData(queryKeys.pages.detail(variables.slug), data);
       queryClient.invalidateQueries({ queryKey: ['pages', 'list'] });
     },
-    onError: (error: any) => {
-      if (error.response?.status === 409) {
-        console.error('Version conflict:', error.response.data);
+    onError: (error: unknown) => {
+      const err = error as { response?: { status?: number; data?: unknown } };
+      if (err?.response?.status === 409) {
+        // eslint-disable-next-line no-console
+        console.error('Version conflict:', err.response.data);
       }
     },
   });

@@ -145,7 +145,7 @@ export default function BlogDetailed() {
     if (!slug) return;
     Api.getBlog(slug)
       .then((data) => setPost(data as BlogDetail))
-      .catch((e: any) => setError(e?.message || String(e)))
+      .catch((e: unknown) => setError((e as { message?: string })?.message || String(e)))
       .finally(() => setLoading(false));
   }, [slug]);
 

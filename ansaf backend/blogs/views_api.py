@@ -544,6 +544,17 @@ class PostViewSet(
     def get_realtime_group_name(self):
         return "posts"
 
+    def get_realtime_event_type(self, action):
+        """
+        Override default event type so it matches the consumer method name.
+        The Channels consumer expects a handler named `blog_update` (see
+        `backend/consumers.py`), therefore the 'type' value sent via
+        channel_layer.group_send must resolve to that method. Returning
+        'blog_update' here ensures the consumer receives and forwards the
+        notification payload to connected WebSocket clients.
+        """
+        return "blog_update"
+
     def get_queryset(self):
         """
         Public listing:

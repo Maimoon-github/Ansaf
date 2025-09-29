@@ -117,6 +117,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Api } from "@/lib/api"; // fetch-based helper (named export)
 import { BlogListItem } from '@/lib/api-types';
+import useRealtimePosts from '@/hooks/useRealtimePosts';
 
 export default function Blogs() {
   const [items, setItems] = React.useState<BlogListItem[]>([]);
@@ -130,9 +131,59 @@ export default function Blogs() {
         const results = Array.isArray(data) ? data : (data.results ?? []);
         setItems(results as BlogListItem[]);
       })
-      .catch((e: any) => setError(e?.message || String(e)))
+      .catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err);
+        setError(msg);
+      })
       .finally(() => setLoading(false));
   }, []);
+
+  // Realtime updates: insert/update/delete posts as they come from backend
+  // Helper to extract an identifier (id or slug) from various payload shapes
+  function getIdentifier(obj: unknown): string | number | undefined {
+    if (obj == null) return undefined;
+    if (typeof obj === 'object') {
+      const rec = obj as Record<string, unknown>;
+      if (typeof rec.slug === 'string') return rec.slug;
+      if (typeof rec.id === 'number' || typeof rec.id === 'string') return rec.id;
+    }
+    return undefined;
+  }
+
+  useRealtimePosts((ev) => {
+    const t = ev.type ?? '';
+    const payload = ev.payload;
+
+    try {
+      if (t.endsWith('.created')) {
+        if (payload) setItems((prev) => [payload as unknown as BlogListItem, ...prev]);
+        return;
+      }
+
+      if (t.endsWith('.updated')) {
+        const payloadId = getIdentifier(payload);
+        if (payloadId == null) return;
+        setItems((prev) =>
+          prev.map((p) => {
+            const pid = getIdentifier(p as unknown);
+            if (pid === payloadId) {
+              return { ...p, ...(payload as Partial<BlogListItem>) };
+            }
+            return p;
+          })
+        );
+        return;
+      }
+
+      if (t.endsWith('.deleted')) {
+        const idToRemove = ev.id ?? getIdentifier(payload);
+        setItems((prev) => prev.filter((p) => getIdentifier(p as unknown) !== idToRemove));
+        return;
+      }
+    } catch (err: unknown) {
+      console.error('Realtime handler error', err);
+    }
+  });
 
   if (loading) return <section className="container mx-auto px-4 py-12">Loading…</section>;
   if (error)
@@ -151,7 +202,8 @@ export default function Blogs() {
     );
 
   // prefer API items; fallback to static blogs during dev or if API returns empty
-  const listToRender = items.length ? items : fallbackBlogs;
+  // Cast fallback data to API type for rendering; the UI is defensive about missing fields.
+  const listToRender: BlogListItem[] = items.length ? items : (fallbackBlogs as unknown as BlogListItem[]);
 
   return (
     <>
@@ -166,12 +218,13 @@ export default function Blogs() {
             </div>
           )}
 
-          {listToRender.map((blog: any) => {
-            // handle both API and static object shapes
-            const slugOrId = blog.slug ?? blog.id;
-            const imgSrc = blog.cover_image ?? blog.image ?? "/placeholder-hero.jpg"; // small local placeholder
-            const date = blog.published ? new Date(blog.published).toLocaleDateString() : blog.date;
-            const excerpt = blog.excerpt ?? blog.summary ?? "";
+          {listToRender.map((blog: BlogListItem) => {
+            // handle both API and static object shapes (UI reads fields defensively)
+            const slugOrId = getIdentifier(blog) ?? blog.id ?? blog.slug;
+            const _blogRec = blog as unknown as Record<string, unknown>;
+            const imgSrc = blog.cover_image ?? (_blogRec.image as string | undefined) ?? "/placeholder-hero.jpg";
+            const date = blog.published ? new Date(blog.published).toLocaleDateString() : (_blogRec.date as string | undefined);
+            const excerpt = blog.excerpt ?? (_blogRec.summary as string | undefined) ?? "";
 
             return (
               <Link

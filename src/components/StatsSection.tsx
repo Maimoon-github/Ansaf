@@ -1,43 +1,45 @@
 import { useState, useEffect, useRef } from "react";
 import { Building, Users, Award, Clock } from "lucide-react";
 
+// Move stats to module scope so the reference is stable across renders.
+const STATS = [
+  { icon: Building, number: 50, suffix: "+", label: "Projects Completed" },
+  { icon: Users, number: 90, suffix: "+", label: "Happy Clients" },
+  { icon: Clock, number: 15, suffix: "+", label: "Years Experience" },
+  { icon: Award, number: 50, suffix: "+", label: "Team Members" },
+];
+
 const StatsSection = () => {
-  const stats = [
-    { icon: Building, number: 50, suffix: "+", label: "Projects Completed" },
-    { icon: Users, number: 90, suffix: "+", label: "Happy Clients" },
-    { icon: Clock, number: 15, suffix: "+", label: "Years Experience" },
-    { icon: Award, number: 50, suffix: "+", label: "Team Members" },
-  ];
-
-  const [counts, setCounts] = useState(stats.map(() => 0));
-  const sectionRef = useRef(null);
-  
-  const startCounting = () => {
-    stats.forEach((stat, i) => {
-      let start = 0;
-      const end = stat.number;
-      const duration = 2000; // ms
-      const increment = end / (duration / 16); // ~60fps
-
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          start = end;
-          clearInterval(timer);
-        }
-        setCounts(prev =>
-          prev.map((count, index) => (index === i ? Math.floor(start) : count))
-        );
-      }, 16);
-    });
-  };
+  const [counts, setCounts] = useState(STATS.map(() => 0));
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    // Local startCounting so effect has no external function deps
+    const startCounting = () => {
+      STATS.forEach((stat, i) => {
+        let start = 0;
+        const end = stat.number;
+        const duration = 2000; // ms
+        const increment = end / (duration / 16); // ~60fps
+
+        const timer = setInterval(() => {
+          start += increment;
+          if (start >= end) {
+            start = end;
+            clearInterval(timer);
+          }
+          setCounts((prev) =>
+            prev.map((count, index) => (index === i ? Math.floor(start) : count))
+          );
+        }, 16);
+      });
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setCounts(stats.map(() => 0)); // reset to 0
+            setCounts(STATS.map(() => 0)); // reset to 0
             startCounting(); // start animation
           }
         });
@@ -45,12 +47,13 @@ const StatsSection = () => {
       { threshold: 0.5 } // visible at least 50%
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const node = sectionRef.current;
+    if (node) {
+      observer.observe(node);
     }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (node) observer.unobserve(node);
     };
   }, []);
 

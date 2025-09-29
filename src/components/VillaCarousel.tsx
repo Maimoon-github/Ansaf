@@ -4,24 +4,25 @@ import { Link } from "react-router-dom";
 
 const ImageSlider = ({ slides = [], autoSlide = true, interval = 4000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
-  if (!slides.length) return null;
-
-  const prevSlide = () => {
+  // stabilize navigation functions so they can be safely used in effects
+  const prevSlide = React.useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  };
+  }, [slides.length]);
 
-  const nextSlide = () => {
+  const nextSlide = React.useCallback(() => {
     setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-  };
+  }, [slides.length]);
 
-  // Auto slide effect
+  // Auto slide effect (hooks must run unconditionally)
   useEffect(() => {
-    if (!autoSlide) return;
+    if (!autoSlide || slides.length === 0) return;
     const slideInterval = setInterval(nextSlide, interval);
     return () => clearInterval(slideInterval);
-  }, [currentIndex, autoSlide, interval]);
+  }, [autoSlide, interval, nextSlide, slides.length]);
+
+  if (!slides.length) return null;
 
   // Handle swipe gestures
   const handleTouchStart = (e) => {
