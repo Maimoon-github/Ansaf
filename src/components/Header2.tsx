@@ -11,6 +11,7 @@ export default function Navbar() {
   const NavItems = [
     { title: "Home", url: "/", cName: "nav-links" },
     { title: "About", url: "/about", cName: "nav-links" },
+    { title: "Blogs", url: "/blogs", cName: "nav-links" },
     {
       title: "Services",
       url: "/services",
@@ -224,15 +225,18 @@ export default function Navbar() {
             }
             return (
               <li key={index}>
-                <a href={item.url} className={item.cName}>
+                {/* use Link for internal routing to avoid full page reload */}
+                <Link to={item.url} className={item.cName}>
                   {item.title}
-                </a>
+                </Link>
               </li>
             );
           })}
-          <a href="https://calendly.com/ansafcont-building-contracting/30min" className="nav-button">
-            Let's Connect
-          </a>
+          <li>
+            <a href="https://calendly.com/ansafcont-building-contracting/30min" className="nav-button">
+              Let's Connect
+            </a>
+          </li>
         </ul>
       </nav>
     </>

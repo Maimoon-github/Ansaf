@@ -17,6 +17,7 @@ const Footer = () => {
   <ul className="space-y-2 text-sm">
     <li><Link to="/about" className="hover:underline">About Company</Link></li>
     <li><Link to="/services" className="hover:underline">Services</Link></li>
+    <li><Link to="/blogs" className="hover:underline">Blogs</Link></li>
     <li><Link to="/Contact-us" className="hover:underline">Contact Us</Link></li>
   </ul>
 </div>
@@ -75,10 +76,10 @@ const Footer = () => {
         </div>
         
         <div className="flex gap-2 mt-4 md:mt-0">
-        <a href="https://www.facebook.com/Ansaf.contracting.Building">  <FaFacebookF className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="https://www.tiktok.com/@ansafbuildingcont"> <FaTiktok className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="https://www.pinterest.com/ansafbuilding/"> <FaPinterest className="text-white border border-white p-1 rounded w-6 h-6" /></a>
-         <a href="https://www.instagram.com/ansaf_building_contracting/"> <FaInstagram className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+  <a href="https://www.facebook.com/Ansaf.contracting.Building" aria-label="Ansaf on Facebook" title="Ansaf on Facebook">  <FaFacebookF className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+   <a href="https://www.tiktok.com/@ansafbuildingcont" aria-label="Ansaf on TikTok" title="Ansaf on TikTok"> <FaTiktok className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+   <a href="https://www.pinterest.com/ansafbuilding/" aria-label="Ansaf on Pinterest" title="Ansaf on Pinterest"> <FaPinterest className="text-white border border-white p-1 rounded w-6 h-6" /></a>
+   <a href="https://www.instagram.com/ansaf_building_contracting/" aria-label="Ansaf on Instagram" title="Ansaf on Instagram"> <FaInstagram className="text-white border border-white p-1 rounded w-6 h-6" /></a>
          {/* <a href="#"> <FaLinkedinIn className="text-white border border-white p-1 rounded w-6 h-6" /></a> */}
         
         </div>
