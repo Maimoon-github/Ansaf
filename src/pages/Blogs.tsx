@@ -128,7 +128,15 @@ export default function Blogs() {
     Api.listBlogs()
       .then((data) => {
         // Api.listBlogs() returns either an array or { results: [...] }
-        const results = Array.isArray(data) ? data : (data.results ?? []);
+        const resultsRaw = Array.isArray(data) ? data : (data.results ?? []);
+        // Normalize each item to the frontend `BlogListItem` shape so UI checks are simpler
+        const results = (resultsRaw as any[]).map((r) => {
+          const rec = { ...(r ?? {}) };
+          rec.excerpt = r.excerpt ?? r.summary ?? "";
+          rec.published = r.published ?? r.published_at ?? r.publishedAt ?? null;
+          rec.cover_image = r.cover_image ?? r.cover_image_url ?? r.featured_image_url ?? null;
+          return rec as BlogListItem;
+        });
         setItems(results as BlogListItem[]);
       })
       .catch((err: unknown) => {

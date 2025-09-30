@@ -144,7 +144,20 @@ export default function BlogDetailed() {
   React.useEffect(() => {
     if (!slug) return;
     Api.getBlog(slug)
-      .then((data) => setPost(data as BlogDetail))
+      .then((data) => {
+        // Some backends use `body`, `published_at`, or `content` fields while
+        // the frontend expects `body_html` and `published`. Normalize here.
+        const raw = data as any;
+        console.debug('BlogDetailed: raw API response', raw);
+        const normalized: any = { ...(raw ?? {}) };
+        // Prefer HTML body fields in this order
+        normalized.body_html = raw.body_html ?? raw.body ?? raw.content ?? '';
+        // Published date compatibility
+        normalized.published = raw.published ?? raw.published_at ?? raw.publishedAt ?? raw.publishedAt ?? null;
+        // Cover image compatibility
+        normalized.cover_image = raw.cover_image ?? raw.cover_image_url ?? raw.featured_image_url ?? null;
+        setPost(normalized as BlogDetail);
+      })
       .catch((e: unknown) => setError((e as { message?: string })?.message || String(e)))
       .finally(() => setLoading(false));
   }, [slug]);
